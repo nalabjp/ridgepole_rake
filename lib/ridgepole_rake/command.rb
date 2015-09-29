@@ -9,7 +9,7 @@ module RidgepoleRake
       @options = options
     end
 
-    def exec
+    def execute
       if !!config.use_clean_system
         Bunder.clean_system(command)
       else
@@ -17,12 +17,16 @@ module RidgepoleRake
       end
     end
 
+    def to_s
+      join.strip
+    end
+
     private 
 
     def command
       reset
       build
-      prepare
+      join
     end
 
     def reset
@@ -39,7 +43,7 @@ module RidgepoleRake
       add_ridgepole
     end
 
-    def prepare
+    def join
       stash.join(' ')
     end
 
@@ -54,7 +58,7 @@ module RidgepoleRake
       when :export
         stash.push('--output', config.schema_dump_path)
       when :diff
-        stash.push('--diff', *config.diff_files) # TODO: db config with brancher?
+        stash.push('--diff', database_configuration, config.schema_file_path)
       else
         raise UndefinedActionError, "Undefined action: '#{action}'"
       end
@@ -81,12 +85,32 @@ module RidgepoleRake
     end
 
     def add_db_config
-      stash.push('--config', config.db_config)
+      stash.push('--config', database_configuration)
     end
 
     def add_ridgepole
       stash.unshift('ridgepole')
       stash.unshift('bundle exec') if config.use_bundler
+    end
+
+    def database_configuration
+      if config.use_brancher && (yaml = database_configuration_with_brancher)
+        yaml
+      else
+        config.db_config
+      end
+    end
+
+    def database_configuration_with_brancher
+      begin
+        require 'brancher'
+        configurations = YAML.load(ERB.new(File.read(config.db_config)).result)
+        Brancher::DatabaseRenameService.rename!(configurations, config.env)
+        yaml = configurations[config.env].to_yaml
+        yaml.sub(/---\n/, '') if action.eql?(:diff)
+        yaml
+      rescue LoadError
+      end
     end
   end
 

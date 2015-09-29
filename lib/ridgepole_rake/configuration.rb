@@ -26,14 +26,9 @@ module RidgepoleRake
       "#{self.schema_dir}.dump/#{self.schema_file}"
     end
 
-    # diff files
-    config_accessor :diff_files do
-      [self.db_config, self.schema_file_path]
-    end
-
     # environment
     config_accessor :env do
-      defined?(::Rails) ? Rails.env : 'development'
+      defined?(Rails) ? Rails.env : 'development'
     end
 
     # table options

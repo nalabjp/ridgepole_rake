@@ -23,7 +23,9 @@ module RidgepoleRake
     private
 
     def run(action, options = {})
-      Command.new(action, @config, options).exec
+      command = Command.new(action, @config, options)
+      command.execute
+      command.to_s
     end
   end
 end
