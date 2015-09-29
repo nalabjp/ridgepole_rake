@@ -31,7 +31,7 @@ namespace :ridgepole do
   desc '`ridgepole --apply --dry-run` with requirements options'
   namespace :apply do
     task 'dry-run' => %i( environment configure ) do
-      RidgepoleRake::Tasks.apply(dry_run: true)
+      RidgepoleRake::Tasks.apply(true)
     end
   end
 
