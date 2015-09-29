@@ -23,20 +23,14 @@ namespace :ridgepole do
     #   end
   end
 
-  task :output do
-    puts '---'
-    puts "Executed command => `command is here`"
-  end
-
   desc '`ridgepole --apply` with requirements options'
   task apply: %i( environment configure ) do
     RidgepoleRake::Tasks.apply
-    Annotate::Migration.update_annotations if defined?(Annotate::Migration)
   end
 
   desc '`ridgepole --apply --dry-run` with requirements options'
   namespace :apply do
-    task dry_run: %i( environment configure ) do
+    task 'dry-run' => %i( environment configure ) do
       RidgepoleRake::Tasks.apply(dry_run: true)
     end
   end
@@ -50,10 +44,10 @@ namespace :ridgepole do
   task reset: %i( environment configure ) do
     ActiveRecord::Tasks::DatabaseTasks.drop_current
     ActiveRecord::Tasks::DatabaseTasks.create_current
-    Rake::Task['ridgepole:apply'].invoke
+    RidgepoleRake::Tasks.apply
   end
 
-  desc 'diff current schemafile and current db schema'
+  desc 'diff current db schema and current schema file'
   task diff: %i( environment configure ) do
     RidgepoleRake::Tasks.diff
   end

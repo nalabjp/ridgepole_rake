@@ -25,7 +25,13 @@ module RidgepoleRake
     def run(action, options = {})
       command = Command.new(action, @config, options)
       command.execute
-      command.to_s
+
+      result(command.to_s)
+    end
+
+    def result(command)
+      puts '-----'
+      puts "Executed command => #{command}"
     end
   end
 end
