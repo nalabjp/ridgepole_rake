@@ -35,6 +35,13 @@ namespace :ridgepole do
     end
   end
 
+  desc '`ridgepole --merge` with requirements options'
+  task :merge, [:table_or_patch] => %i( environment configure ) do
+    raise 'Require table schema file or patch file' if args.table_or_patch.blank?
+
+    RidgepoleRake::Tasks.merge(args.table_or_patch)
+  end
+
   desc '`ridgepole --export` with requirements options'
   task export: %i( environment configure ) do
     RidgepoleRake::Tasks.export
