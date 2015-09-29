@@ -23,36 +23,36 @@ namespace :ridgepole do
     #   end
   end
 
-  desc '`ridgepole --apply` with requirements options'
+  desc '`ridgepole --apply`'
   task apply: %i( environment configure ) do
     RidgepoleRake::Tasks.apply
   end
 
-  desc '`ridgepole --apply --dry-run` with requirements options'
+  desc '`ridgepole --apply --dry-run`'
   task 'apply_dry-run' => %i( environment configure ) do
     RidgepoleRake::Tasks.apply(true)
   end
 
-  desc '`ridgepole --merge` with requirements options'
+  desc '`ridgepole --merge`'
   task :merge, [:table_or_patch] => %i( environment configure ) do
     raise 'Require table schema file or patch file' if args.table_or_patch.blank?
 
     RidgepoleRake::Tasks.merge(args.table_or_patch)
   end
 
-  desc '`ridgepole --merge --dry-run` with requirements options'
+  desc '`ridgepole --merge --dry-run`'
   task 'merge_dry-run', [:table_or_patch] => %i( environment configure ) do
     raise 'Require table schema file or patch file' if args.table_or_patch.blank?
 
     RidgepoleRake::Tasks.merge(args.table_or_patch, true)
   end
 
-  desc '`ridgepole --export` with requirements options'
+  desc '`ridgepole --export`'
   task export: %i( environment configure ) do
     RidgepoleRake::Tasks.export
   end
 
-  desc '`rake db:drop`, `rake db:create` and `ridgepole --apply` with requirements options'
+  desc '`rake db:drop`, `rake db:create` and `ridgepole --apply`'
   task reset: %i( environment configure ) do
     ActiveRecord::Tasks::DatabaseTasks.drop_current
     ActiveRecord::Tasks::DatabaseTasks.create_current
