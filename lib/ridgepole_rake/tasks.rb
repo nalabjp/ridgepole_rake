@@ -8,8 +8,8 @@ module RidgepoleRake
       run(:apply, dry_run: dry_run)
     end
 
-    def merge(dry_run = false)
-      run(:merge, dry_run: dry_run)
+    def merge(table_or_patch, dry_run = false)
+      run(:merge, table_or_patch: table_or_patch, dry_run: dry_run)
     end
 
     def export
