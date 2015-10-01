@@ -5,7 +5,17 @@ class RidgepoleRakeTest < Minitest::Test
     refute_nil ::RidgepoleRake::VERSION
   end
 
-  def test_it_does_something_useful
-    assert false
+  def test_configure
+    old_db_config = RidgepoleRake.config.db_config
+    new_db_config = 'new_' + old_db_config
+    RidgepoleRake.configure do |config|
+      config.db_config = new_db_config
+    end
+
+    assert_equal new_db_config, RidgepoleRake.config.db_config
+  end
+
+  def test_config
+    assert RidgepoleRake.config.instance_of?(RidgepoleRake::Configuration)
   end
 end
