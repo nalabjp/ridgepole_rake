@@ -14,35 +14,46 @@ module RidgepoleRake
 
     # schema file
     config_accessor :schema_file do
-      'Schemefile'
+      'Schemafile'
     end
 
-    config_accessor :schema_file_path, instance_writer: false do
+    # schema file path
+    def schema_file_path
       "#{self.schema_dir}/#{self.schema_file}"
     end
 
-    # schema dump file
-    config_accessor :schema_dump_path, instance_writer: false do
+    # schema dump file path
+    def schema_dump_path
       "#{self.schema_dir}.dump/#{self.schema_file}"
     end
 
     # environment
     config_accessor :env do
-      defined?(Rails) ? Rails.env : 'development'
+      begin
+        require 'rails'
+        Rails.env
+      rescue LoadError
+        'development'
+      end
     end
 
     # table options
     config_accessor :table_options
 
     # require options
-    config_accessor :require
+    config_accessor :require_options
 
     # misc
     config_accessor :misc
 
     # use Bundler
     config_accessor :use_bundler do
-      !!defined?(Bundler)
+      begin
+        require 'bundler'
+        true
+      rescue LoadError
+        false
+      end
     end
 
     # use Bundler.clean_system
@@ -51,7 +62,12 @@ module RidgepoleRake
     end
 
     config_accessor :use_brancher do
-      !!defined?(Brancher)
+      begin
+        require 'brancher'
+        true
+      rescue LoadError
+        false
+      end
     end
   end
 end
