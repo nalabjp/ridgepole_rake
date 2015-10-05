@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 
-group :development do
+group :development, :test do
   gem 'pry'
   gem 'pry-power_assert'
+  gem 'pry-doc'
+  gem 'pry-byebug'
 end
 
 group :test do
