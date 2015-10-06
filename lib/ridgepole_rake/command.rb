@@ -1,7 +1,5 @@
 module RidgepoleRake
   class Command
-    attr_accessor :stash, :action, :config, :options
-
     def initialize(action, config, options = {})
       @stash   = []
       @action  = action
@@ -17,21 +15,12 @@ module RidgepoleRake
       end
     end
 
-    def to_s
-      join.strip
-    end
-
-    private 
-
     def command
-      reset
-      build
+      build if @stash.empty?
       join
     end
 
-    def reset
-      stash.clear
-    end
+    private
 
     def build
       add_action
@@ -44,7 +33,7 @@ module RidgepoleRake
     end
 
     def join
-      stash.join(' ')
+      stash.join(' ').strip
     end
 
     def add_action
