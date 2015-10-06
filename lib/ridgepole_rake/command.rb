@@ -1,5 +1,7 @@
 module RidgepoleRake
   class Command
+    attr_reader :stash, :action, :config, :options
+
     def initialize(action, config, options = {})
       @stash   = []
       @action  = action
@@ -25,7 +27,7 @@ module RidgepoleRake
     def build
       add_action
       add_dry_run
-      add_require
+      add_require_options
       add_misc
       add_env
       add_db_config
@@ -57,12 +59,12 @@ module RidgepoleRake
       stash.push('--table_options', config.table_options) if config.table_options
     end
 
-    def dry_run
+    def add_dry_run
       stash.push('--dry-run') if options[:dry_run]
     end
 
-    def add_require
-      stash.push('--require', config.require) if config.require
+    def add_require_options
+      stash.push('--require', config.require_options) if config.require_options
     end
 
     def add_misc
