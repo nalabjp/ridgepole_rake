@@ -18,7 +18,7 @@ module RidgepoleRake
     end
 
     def command
-      build if @stash.empty?
+      build if stash.empty?
       join
     end
 
