@@ -12,4 +12,12 @@ class RidgepoleRake::CommandTest < Minitest::Test
 
     assert_equal exp, RidgepoleRake::Command.new(action, config).command
   end
+
+  def test_command_with_export_action
+    action = :export
+    config = RidgepoleRake.config
+    exp = 'bundle exec ridgepole --export --output db/schemas.dump/Schemafile --env development --config config/database.yml'
+
+    assert_equal exp, RidgepoleRake::Command.new(action, config).command
+  end
 end
