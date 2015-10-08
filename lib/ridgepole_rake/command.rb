@@ -41,12 +41,15 @@ module RidgepoleRake
     def add_action
       case action
       when :apply
+        stash.push('--apply')
         stash.push('--file', config.schema_file_path)
         add_table_options
       when :merge
+        stash.push('--merge')
         stash.push('--file', options[:table_or_patch])
         add_table_options
       when :export
+        stash.push('--export')
         stash.push('--output', config.schema_dump_path)
       when :diff
         stash.push('--diff', database_configuration, config.schema_file_path)

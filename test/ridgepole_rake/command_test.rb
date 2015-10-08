@@ -8,7 +8,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
   def test_command_with_apply_action
     action = :apply
     config = RidgepoleRake.config
-    exp = 'bundle exec ridgepole --file db/schemas/Schemafile --env development --config config/database.yml'
+    exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --env development --config config/database.yml'
 
     assert_equal exp, RidgepoleRake::Command.new(action, config).command
   end
