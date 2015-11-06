@@ -28,4 +28,13 @@ class RidgepoleRake::CommandTest < Minitest::Test
 
     assert_equal exp, RidgepoleRake::Command.new(action, config).command
   end
+
+  def test_command_with_merge_action
+    action = :merge
+    config = RidgepoleRake.config
+    options = { table_or_patch: 'patch_file.rb' }
+    exp = 'bundle exec ridgepole --merge --file patch_file.rb --env development --config config/database.yml'
+
+    assert_equal exp, RidgepoleRake::Command.new(action, config, options).command
+  end
 end
