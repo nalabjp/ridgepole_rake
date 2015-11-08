@@ -3,6 +3,7 @@ require 'test_helper'
 class RidgepoleRake::CommandTest < Minitest::Test
   def setup
     RidgepoleRake.instance_variable_set(:@config, nil)
+    RidgepoleRake.config.use_brancher = false
   end
 
   def test_command_with_apply_action
@@ -84,7 +85,27 @@ class RidgepoleRake::CommandTest < Minitest::Test
   end
 
   def test_commnad_with_db_config_option_and_use_brancher
-    # TODO
+    action = :apply
+    config = RidgepoleRake.config
+    config.use_brancher = true
+    config.env = 'custom_environment'
+    config.db_config = 'test/fixtures/database_config.yml'
+
+    branch_name = 'use_brancher'
+    renamed_yaml = <<-EOYAML
+---
+user: custom_user
+password: custom_password
+database: custom_#{branch_name}
+original_database: custom
+    EOYAML
+    renamed_yaml.chomp!
+
+    exp = "bundle exec ridgepole --apply --file db/schemas/Schemafile --env custom_environment --config #{renamed_yaml}"
+
+    Brancher::DatabaseRenameService.stub(:suffix, "_#{branch_name}") do
+      assert_equal exp, RidgepoleRake::Command.new(action, config).command
+    end
   end
 
   def test_command_without_bundler

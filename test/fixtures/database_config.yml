@@ -1,0 +1,4 @@
+custom_environment:
+  user:     custom_user
+  password: custom_password
+  database: custom
