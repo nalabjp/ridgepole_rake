@@ -64,4 +64,13 @@ class RidgepoleRake::CommandTest < Minitest::Test
 
     assert_equal exp, RidgepoleRake::Command.new(action, config).command
   end
+
+  def test_command_with_env_option
+    action = :apply
+    config = RidgepoleRake.config
+    config.env = 'staging'
+    exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --env staging --config config/database.yml'
+
+    assert_equal exp, RidgepoleRake::Command.new(action, config).command
+  end
 end
