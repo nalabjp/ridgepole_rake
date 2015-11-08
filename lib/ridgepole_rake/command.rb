@@ -98,6 +98,7 @@ module RidgepoleRake
     def database_configuration_with_brancher
       begin
         require 'brancher'
+        require 'erb'
         configurations = YAML.load(ERB.new(File.read(config.db_config)).result)
         Brancher::DatabaseRenameService.rename!(configurations, config.env)
         yaml = configurations[config.env].to_yaml
