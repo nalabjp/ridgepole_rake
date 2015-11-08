@@ -46,4 +46,13 @@ class RidgepoleRake::CommandTest < Minitest::Test
 
     assert_equal exp, RidgepoleRake::Command.new(action, config, options).command
   end
+
+  def test_commnad_with_require_options_option
+    action = :apply
+    config = RidgepoleRake.config
+    config.require_options = 'requires.rb'
+    exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --require requires.rb --env development --config config/database.yml'
+
+    assert_equal exp, RidgepoleRake::Command.new(action, config).command
+  end
 end
