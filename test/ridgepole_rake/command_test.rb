@@ -86,4 +86,13 @@ class RidgepoleRake::CommandTest < Minitest::Test
   def test_commnad_with_db_config_option_and_use_brancher
     # TODO
   end
+
+  def test_command_without_bundler
+    action = :apply
+    config = RidgepoleRake.config
+    config.use_bundler = false
+    exp = 'ridgepole --apply --file db/schemas/Schemafile --env development --config config/database.yml'
+
+    assert_equal exp, RidgepoleRake::Command.new(action, config).command
+  end
 end
