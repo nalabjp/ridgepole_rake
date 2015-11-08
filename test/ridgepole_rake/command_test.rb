@@ -82,4 +82,8 @@ class RidgepoleRake::CommandTest < Minitest::Test
 
     assert_equal exp, RidgepoleRake::Command.new(action, config).command
   end
+
+  def test_commnad_with_db_config_option_and_use_brancher
+    # TODO
+  end
 end
