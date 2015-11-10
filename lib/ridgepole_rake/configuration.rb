@@ -1,53 +1,73 @@
 module RidgepoleRake
   class Configuration
-    attr_accessor :ridgepole, :brancher, :bundler
+    include ActiveSupport::Configurable
 
-    def initialize
-      @ridgepole = default_ridgepole_options.with_indifferent_access
-      @brancher  = default_brancher_options.with_indifferent_access
-      @bundler   = default_bundler_options.with_indifferent_access
+    # database configuration
+    config_accessor :db_config do
+      'config/database.yml'
     end
 
-    private
-
-    def default_ridgepole_options
-      env = begin
-              require 'rails'
-              Rails.env
-            rescue LoadError
-              'development'
-            end
-      {
-        config:      'config/database.yml',
-        schema_path: 'db/schemas/Schemafile',
-        export_path: 'db/schemas.dump/Schemafile',
-        env:         env,
-      }
+    # schema dir
+    config_accessor :schema_dir do
+      'db/schemas'
     end
 
-    def default_brancher_options
-      enable = begin
-                 require 'brancher'
-                 true
-               rescue LoadError
-                 false
-               end
-      {
-        enable: enable
-      }
+    # schema file
+    config_accessor :schema_file do
+      'Schemafile'
     end
 
-    def default_bundle_options
-      enable = begin
-                 require 'bundler'
-                 true
-               rescue LoadError
-                 false
-               end
-      {
-        enable:       enable,
-        clean_system: enable
-      }
+    # schema file path
+    def schema_file_path
+      "#{self.schema_dir}/#{self.schema_file}"
+    end
+
+    # schema dump file path
+    def schema_dump_path
+      "#{self.schema_dir}.dump/#{self.schema_file}"
+    end
+
+    # environment
+    config_accessor :env do
+      begin
+        require 'rails'
+        Rails.env
+      rescue LoadError
+        'development'
+      end
+    end
+
+    # table options
+    config_accessor :table_options
+
+    # require options
+    config_accessor :require_options
+
+    # misc
+    config_accessor :misc
+
+    # use Bundler
+    config_accessor :use_bundler do
+      begin
+        require 'bundler'
+        true
+      rescue LoadError
+        false
+      end
+    end
+
+    # use Bundler.clean_system
+    config_accessor :use_clean_system do
+      self.use_bundler
+    end
+
+    config_accessor :use_brancher do
+      begin
+        require 'brancher'
+        true
+      rescue LoadError
+        false
+      end
     end
   end
 end
