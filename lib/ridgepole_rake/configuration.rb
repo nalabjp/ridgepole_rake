@@ -1,61 +1,72 @@
 module RidgepoleRake
   class Configuration
-    attr_accessor :ridgepole, :brancher, :bundler
+    include ActiveSupport::Configurable
 
-    def initialize
-      @ridgepole = Ridgepole.new
-      @brancher  = Brancher.new
-      @bundler   = Bundler.new
+    # database configuration
+    config_accessor :db_config do
+      'config/database.yml'
     end
 
-    private
+    # schema dir
+    config_accessor :schema_dir do
+      'db/schemas'
+    end
 
-    class Ridgepole
-      include ActiveSupport::Configurable
+    # schema file
+    config_accessor :schema_file do
+      'Schemafile'
+    end
 
-      config_accessor :config, :schema_path, :export_path, :env
+    # schema file path
+    def schema_file_path
+      "#{self.schema_dir}/#{self.schema_file}"
+    end
 
-      def initialize
-        @config      = 'config/database.yml'
-        @schema_path = 'db/schemas/Schemafile'
-        @schema_path = 'db/schemas.dump/Schemafile'
-        @env         = begin
-                         require 'rails'
-                         Rails.env
-                       rescue LoadError
-                         'development'
-                       end
+    # schema dump file path
+    def schema_dump_path
+      "#{self.schema_dir}.dump/#{self.schema_file}"
+    end
+
+    # environment
+    config_accessor :env do
+      begin
+        require 'rails'
+        Rails.env
+      rescue LoadError
+        'development'
       end
     end
 
-    class Brancher
-      include ActiveSupport::Configurable
+    # table options
+    config_accessor :table_options
 
-      config_accessor :enable
+    # require options
+    config_accessor :require_options
 
-      def initialize
-        @enable = begin
-                    require 'brancher'
-                    true
-                  rescue LoadError
-                    false
-                  end
+    # misc
+    config_accessor :misc
+
+    # use Bundler
+    config_accessor :use_bundler do
+      begin
+        require 'bundler'
+        true
+      rescue LoadError
+        false
       end
     end
 
-    class Bundler
-      include ActiveSupport::Configurable
+    # use Bundler.clean_system
+    config_accessor :use_clean_system do
+      self.use_bundler
+    end
 
-      config_accessor :enable, :clean_system
-
-      def initialize
-        @enable = begin
-                    require 'bundler'
-                    true
-                  rescue LoadError
-                    false
-                  end
-        @clean_system = @enable
+    config_accessor :use_brancher do
+      begin
+        require 'brancher'
+        true
+      rescue LoadError
+        false
       end
     end
   end
