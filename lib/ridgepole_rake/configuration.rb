@@ -18,7 +18,7 @@ module RidgepoleRake
       def initialize
         @config      = 'config/database.yml'
         @schema_path = 'db/schemas/Schemafile'
-        @schema_path = 'db/schemas.dump/Schemafile'
+        @export_path = 'db/schemas.dump/Schemafile'
         @env         = begin
                          require 'rails'
                          Rails.env
