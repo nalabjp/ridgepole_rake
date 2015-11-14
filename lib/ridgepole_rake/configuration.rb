@@ -1,3 +1,5 @@
+require 'active_support/core_ext/hash'
+
 module RidgepoleRake
   class Configuration
     attr_accessor :ridgepole, :brancher, :bundler
@@ -37,7 +39,7 @@ module RidgepoleRake
       }
     end
 
-    def default_bundle_options
+    def default_bundler_options
       enable = begin
                  require 'bundler'
                  true
