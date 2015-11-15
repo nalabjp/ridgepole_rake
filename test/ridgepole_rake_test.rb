@@ -6,13 +6,13 @@ class RidgepoleRakeTest < Minitest::Test
   end
 
   def test_configure
-    old_db_config = RidgepoleRake.config.db_config
+    old_db_config = RidgepoleRake.config.ridgepole.fetch(:config)
     new_db_config = 'new_' + old_db_config
     RidgepoleRake.configure do |config|
-      config.db_config = new_db_config
+      config.ridgepole[:config] = new_db_config
     end
 
-    assert_equal new_db_config, RidgepoleRake.config.db_config
+    assert_equal new_db_config, RidgepoleRake.config.ridgepole.fetch(:config)
   end
 
   def test_config
