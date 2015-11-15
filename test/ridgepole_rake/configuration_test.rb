@@ -36,7 +36,7 @@ class RidgepoleRake::ConfigurationTest < Minitest::Test
   end
 
   def test_env
-    assert_equal 'development', RidgepoleRake.config.ridgepole[:env]
+    assert_equal 'test', RidgepoleRake.config.ridgepole[:env]
 
     RidgepoleRake.configure do |config|
       config.ridgepole[:env] = 'production'
