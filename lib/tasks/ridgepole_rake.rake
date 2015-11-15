@@ -1,66 +1,42 @@
 namespace :ridgepole do
-  task :configure do
-    # If you want to configure your configuration, please define the task with the same name as 'ridgepole:configure'.
-    #
-    # e.g.
-    #   # /rails_root_path/lib/tasks/ridgepole.rake
-    #
-    #   namespace :ridgepole do
-    #     task :configure do
-    #       RidgepoleRake.schema_file_path = 'db/schema_file'
-    #       RidgepoleRake.schema_dump_path = 'db/output'
-    #     end
-    #   end
-    #
-    #   # It is also possible to use the block instead of accessor.
-    #   namespace :ridgepole do
-    #     task :configure do
-    #       RidgepoleRake.configure do |config|
-    #         config.schema_file_path = 'db/schema_file'
-    #         config.schema_dump_path = 'db/output'
-    #       end
-    #     end
-    #   end
-  end
-
   desc '`ridgepole --apply`'
-  task apply: %i( environment configure ) do
+  task apply: :environment do
     RidgepoleRake::Tasks.apply
   end
 
   desc '`ridgepole --apply --dry-run`'
-  task 'apply_dry-run' => %i( environment configure ) do
+  task 'apply_dry-run' => :environment do
     RidgepoleRake::Tasks.apply(true)
   end
 
   desc '`ridgepole --merge`'
-  task :merge, [:merge_file] => %i( environment configure ) do
+  task :merge, [:merge_file] => :environment do
     raise 'Require table schema file or patch file' if args.merge_file.blank?
 
     RidgepoleRake::Tasks.merge(args.merge_file)
   end
 
   desc '`ridgepole --merge --dry-run`'
-  task 'merge_dry-run', [:merge_file] => %i( environment configure ) do
+  task 'merge_dry-run', [:merge_file] => :environment do
     raise 'Require table schema file or patch file' if args.merge_file.blank?
 
     RidgepoleRake::Tasks.merge(args.merge_file, true)
   end
 
   desc '`ridgepole --export`'
-  task export: %i( environment configure ) do
+  task export: :environment do
     RidgepoleRake::Tasks.export
   end
 
   desc '`rake db:drop`, `rake db:create` and `ridgepole --apply`'
-  task reset: %i( environment configure ) do
+  task reset: :environment do
     ActiveRecord::Tasks::DatabaseTasks.drop_current
     ActiveRecord::Tasks::DatabaseTasks.create_current
     RidgepoleRake::Tasks.apply
   end
 
   desc 'diff current db schema and current schema file'
-  task diff: %i( environment configure ) do
+  task diff: :environment do
     RidgepoleRake::Tasks.diff
   end
 end
