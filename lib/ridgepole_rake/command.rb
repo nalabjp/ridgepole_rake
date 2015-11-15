@@ -36,11 +36,6 @@ module RidgepoleRake
       v
     ).freeze
 
-    IGNORE_OPTION_KEYS = %i(
-      dry_run
-      merge_file
-    ).freeze
-
     attr_reader :stash, :action, :config, :options
 
     def initialize(action, config, options = {})
@@ -127,7 +122,7 @@ module RidgepoleRake
     end
 
     def configurable_options
-      config.ridgepole.except(*IGNORE_KEYS).merge(options.except(*IGNORE_OPTION_KEYS))
+      config.ridgepole.except(*IGNORE_KEYS)
     end
 
     def add_ridgepole
