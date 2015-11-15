@@ -76,20 +76,30 @@ module RidgepoleRake
 
     def add_action
       case action
-      when :apply
-        stash.push('--apply')
-        stash.push('--file', config.ridgepole.fetch(:file))
-      when :merge
-        stash.push('--merge')
-        stash.push('--file', options[:merge_file])
-      when :export
-        stash.push('--export')
-        stash.push('--output', config.ridgepole.fetch(:output))
-      when :diff
-        stash.push('--diff', database_configuration, config.ridgepole.fetch(:file))
+      when :apply, :merge, :export, :diff
+        __send__("add_#{action}_action")
       else
         raise UndefinedActionError, "Undefined action: '#{action}'"
       end
+    end
+
+    def add_apply_action
+      stash.push('--apply')
+      stash.push('--file', config.ridgepole.fetch(:file))
+    end
+
+    def add_merge_action
+      stash.push('--merge')
+      stash.push('--file', options[:merge_file])
+    end
+
+    def add_export_action
+      stash.push('--export')
+      stash.push('--output', config.ridgepole.fetch(:output))
+    end
+
+    def add_diff_action
+      stash.push('--diff', database_configuration, config.ridgepole.fetch(:file))
     end
 
     def add_dry_run
