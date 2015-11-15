@@ -24,10 +24,10 @@ module RidgepoleRake
       def run(action, opts = {})
         opts = options.merge(opts) if options && options.is_a?(Hash)
         clear_options
-        command = Command.new(action, RidgepoleRake.config, opts)
-        command.execute
+        cmd = Command.new(action, RidgepoleRake.config, opts)
+        cmd.execute
 
-        result(command.to_s)
+        result(cmd.command)
       end
 
       def result(command)
