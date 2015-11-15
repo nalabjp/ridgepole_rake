@@ -1,5 +1,3 @@
-require 'active_support/core_ext/hash'
-
 module RidgepoleRake
   class Configuration
     attr_accessor :ridgepole, :brancher, :bundler

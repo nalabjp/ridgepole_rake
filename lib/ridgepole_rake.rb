@@ -1,3 +1,4 @@
+require 'active_support/core_ext/hash'
 require 'active_support/configurable'
 require 'ridgepole_rake/configuration'
 require 'ridgepole_rake/command'
