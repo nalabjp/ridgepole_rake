@@ -30,7 +30,7 @@ module RidgepoleRake
       add_require_options
       add_misc
       add_env
-      add_db_config
+      add_config
       add_ridgepole
     end
 
@@ -78,7 +78,7 @@ module RidgepoleRake
       stash.push('--env', config.ridgepole.fetch(:env))
     end
 
-    def add_db_config
+    def add_config
       stash.push('--config', database_configuration)
     end
 
