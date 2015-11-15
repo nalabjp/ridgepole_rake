@@ -8,6 +8,7 @@ module RidgepoleRake
           klass.class_eval { attr_accessor :brancher }
         end
 
+        # @note override
         def initialize
           super
           @brancher = { enable: true }.with_indifferent_access

@@ -6,6 +6,7 @@ module RidgepoleRake
           klass.class_eval { attr_accessor :bundler }
         end
 
+        # @note override
         def initialize
           super
           @bundler = { enable: true, clean_system: true }.with_indifferent_access
@@ -22,6 +23,9 @@ module RidgepoleRake
           end
         end
 
+        private
+
+        # @note override
         def add_ridgepole
           super
           stash.unshift('bundle exec') if config.bundler[:enable]
