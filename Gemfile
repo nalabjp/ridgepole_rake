@@ -14,6 +14,7 @@ group :test do
   gem 'minitest-stub_any_instance'
   gem 'minitest-reporters'
   gem 'brancher'
+  gem "codeclimate-test-reporter", require: false
 end
 
 # Specify your gem's dependencies in ridgepole_rake.gemspec
