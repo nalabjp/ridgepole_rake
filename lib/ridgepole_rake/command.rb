@@ -99,7 +99,7 @@ module RidgepoleRake
     end
 
     def add_diff_action
-      stash.push('--diff', database_configuration, config.ridgepole.fetch(:file))
+      stash.push('--diff', config.ridgepole.fetch(:config), config.ridgepole.fetch(:file))
     end
 
     def add_dry_run

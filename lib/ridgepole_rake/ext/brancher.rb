@@ -38,6 +38,11 @@ module RidgepoleRake
           yaml.sub(/---\n/, '') if action.eql?(:diff)
           yaml
         end
+
+        # @note override
+        def add_diff_action
+          stash.push('--diff', database_configuration, config.ridgepole.fetch(:file))
+        end
       end
     end
   end
