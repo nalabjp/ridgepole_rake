@@ -4,6 +4,11 @@ require 'ridgepole_rake/configuration'
 require 'ridgepole_rake/command'
 require 'ridgepole_rake/tasks'
 require 'ridgepole_rake/version'
+begin
+  require 'brancher'
+  require 'ridgepole_rake/ext/brancher'
+rescue LoadError
+end
 
 module RidgepoleRake
   extend self

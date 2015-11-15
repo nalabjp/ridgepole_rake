@@ -1,10 +1,9 @@
 module RidgepoleRake
   class Configuration
-    attr_accessor :ridgepole, :brancher, :bundler
+    attr_accessor :ridgepole, :bundler
 
     def initialize
       @ridgepole = default_ridgepole_options.with_indifferent_access
-      @brancher  = default_brancher_options.with_indifferent_access
       @bundler   = default_bundler_options.with_indifferent_access
     end
 
@@ -22,18 +21,6 @@ module RidgepoleRake
         file:   'db/schemas/Schemafile',
         output: 'db/schemas.dump/Schemafile',
         env:    env,
-      }
-    end
-
-    def default_brancher_options
-      enable = begin
-                 require 'brancher'
-                 true
-               rescue LoadError
-                 false
-               end
-      {
-        enable: enable
       }
     end
 

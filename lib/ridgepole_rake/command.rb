@@ -79,33 +79,12 @@ module RidgepoleRake
     end
 
     def add_config
-      stash.push('--config', database_configuration)
+      stash.push('--config', config.ridgepole.fetch(:config))
     end
 
     def add_ridgepole
       stash.unshift('ridgepole')
       stash.unshift('bundle exec') if config.bundler[:enable]
-    end
-
-    def database_configuration
-      if config.brancher[:enable] && (yaml = database_configuration_with_brancher)
-        yaml
-      else
-        config.ridgepole.fetch(:config)
-      end
-    end
-
-    def database_configuration_with_brancher
-      begin
-        require 'brancher'
-        require 'erb'
-        configurations = YAML.load(ERB.new(File.read(config.ridgepole.fetch(:config))).result)
-        Brancher::DatabaseRenameService.rename!(configurations, config.ridgepole.fetch(:env))
-        yaml = configurations[config.ridgepole.fetch(:env)].to_yaml
-        yaml.sub(/---\n/, '') if action.eql?(:diff)
-        yaml
-      rescue LoadError
-      end
     end
   end
 
