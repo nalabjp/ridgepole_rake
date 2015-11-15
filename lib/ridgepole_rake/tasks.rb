@@ -1,8 +1,6 @@
 module RidgepoleRake
   class Tasks
     class << self
-      attr_accessor :options
-
       def apply(dry_run = false)
         run(:apply, dry_run: dry_run)
       end
@@ -21,10 +19,8 @@ module RidgepoleRake
 
       private
 
-      def run(action, opts = {})
-        opts = options.merge(opts) if options && options.is_a?(Hash)
-        clear_options
-        cmd = Command.new(action, RidgepoleRake.config, opts)
+      def run(action, options = {})
+        cmd = Command.new(action, RidgepoleRake.config, options)
         cmd.execute
 
         result(cmd.command)
@@ -33,10 +29,6 @@ module RidgepoleRake
       def result(command)
         puts '-----'
         puts "Executed command => #{command}"
-      end
-
-      def clear_options
-        options = nil
       end
     end
   end
