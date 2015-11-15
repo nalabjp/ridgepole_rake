@@ -20,10 +20,10 @@ module RidgepoleRake
               'development'
             end
       {
-        config:      'config/database.yml',
-        schema_path: 'db/schemas/Schemafile',
-        export_path: 'db/schemas.dump/Schemafile',
-        env:         env,
+        config: 'config/database.yml',
+        file:   'db/schemas/Schemafile',
+        output: 'db/schemas.dump/Schemafile',
+        env:    env,
       }
     end
 

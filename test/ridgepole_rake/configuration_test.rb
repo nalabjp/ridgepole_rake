@@ -16,23 +16,23 @@ class RidgepoleRake::ConfigurationTest < Minitest::Test
   end
 
   def test_schema_file_path
-    assert_equal 'db/schemas/Schemafile', RidgepoleRake.config.ridgepole[:schema_path]
+    assert_equal 'db/schemas/Schemafile', RidgepoleRake.config.ridgepole[:file]
 
     RidgepoleRake.configure do |config|
-      config.ridgepole[:schema_path] = 'new_schema_dir/new_schema_file'
+      config.ridgepole[:file] = 'new_schema_dir/new_schema_file'
     end
 
-    assert_equal 'new_schema_dir/new_schema_file', RidgepoleRake.config.ridgepole[:schema_path]
+    assert_equal 'new_schema_dir/new_schema_file', RidgepoleRake.config.ridgepole[:file]
   end
 
   def test_schema_dump_file_path
-    assert_equal 'db/schemas.dump/Schemafile', RidgepoleRake.config.ridgepole[:export_path]
+    assert_equal 'db/schemas.dump/Schemafile', RidgepoleRake.config.ridgepole[:output]
 
     RidgepoleRake.configure do |config|
-      config.ridgepole[:export_path] = 'new_schema_dir.dump/new_schema_file'
+      config.ridgepole[:output] = 'new_schema_dir.dump/new_schema_file'
     end
 
-    assert_equal 'new_schema_dir.dump/new_schema_file', RidgepoleRake.config.ridgepole[:export_path]
+    assert_equal 'new_schema_dir.dump/new_schema_file', RidgepoleRake.config.ridgepole[:output]
   end
 
   def test_env

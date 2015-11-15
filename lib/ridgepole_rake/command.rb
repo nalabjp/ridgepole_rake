@@ -42,7 +42,7 @@ module RidgepoleRake
       case action
       when :apply
         stash.push('--apply')
-        stash.push('--file', config.ridgepole.fetch(:schema_path))
+        stash.push('--file', config.ridgepole.fetch(:file))
         add_table_options
       when :merge
         stash.push('--merge')
@@ -50,9 +50,9 @@ module RidgepoleRake
         add_table_options
       when :export
         stash.push('--export')
-        stash.push('--output', config.ridgepole.fetch(:export_path))
+        stash.push('--output', config.ridgepole.fetch(:output))
       when :diff
-        stash.push('--diff', database_configuration, config.ridgepole.fetch(:schema_path))
+        stash.push('--diff', database_configuration, config.ridgepole.fetch(:file))
       else
         raise UndefinedActionError, "Undefined action: '#{action}'"
       end
