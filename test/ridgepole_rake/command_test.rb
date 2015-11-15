@@ -3,7 +3,7 @@ require 'test_helper'
 class RidgepoleRake::CommandTest < Minitest::Test
   def setup
     RidgepoleRake.instance_variable_set(:@config, nil)
-    RidgepoleRake.config.use_brancher = false
+    RidgepoleRake.config.brancher[:enable] = false
   end
 
   def test_command_with_apply_action
@@ -51,7 +51,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
   def test_commnad_with_require_options_option
     action = :apply
     config = RidgepoleRake.config
-    config.require_options = 'requires.rb'
+    config.ridgepole[:require] = 'requires.rb'
     exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --require requires.rb --env development --config config/database.yml'
 
     assert_equal exp, RidgepoleRake::Command.new(action, config).command
@@ -60,7 +60,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
   def test_command_with_misc_option
     action = :apply
     config = RidgepoleRake.config
-    config.misc = '--add-any-option'
+    config.ridgepole[:misc] = '--add-any-option'
     exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --add-any-option --env development --config config/database.yml'
 
     assert_equal exp, RidgepoleRake::Command.new(action, config).command
@@ -69,7 +69,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
   def test_command_with_env_option
     action = :apply
     config = RidgepoleRake.config
-    config.env = 'staging'
+    config.ridgepole[:env] = 'staging'
     exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --env staging --config config/database.yml'
 
     assert_equal exp, RidgepoleRake::Command.new(action, config).command
@@ -78,7 +78,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
   def test_commnad_with_db_config_option
     action = :apply
     config = RidgepoleRake.config
-    config.db_config = 'config/custom_database.yml'
+    config.ridgepole[:config] = 'config/custom_database.yml'
     exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --env development --config config/custom_database.yml'
 
     assert_equal exp, RidgepoleRake::Command.new(action, config).command
@@ -87,9 +87,9 @@ class RidgepoleRake::CommandTest < Minitest::Test
   def test_commnad_with_db_config_option_and_use_brancher
     action = :apply
     config = RidgepoleRake.config
-    config.use_brancher = true
-    config.env = 'custom_environment'
-    config.db_config = 'test/fixtures/database_config.yml'
+    config.brancher[:enable] = true
+    config.ridgepole[:env] = 'custom_environment'
+    config.ridgepole[:config] = 'test/fixtures/database_config.yml'
 
     branch_name = 'use_brancher'
     renamed_yaml = <<-EOYAML
@@ -111,7 +111,7 @@ original_database: custom
   def test_command_without_bundler
     action = :apply
     config = RidgepoleRake.config
-    config.use_bundler = false
+    config.bundler[:enable] = false
     exp = 'ridgepole --apply --file db/schemas/Schemafile --env development --config config/database.yml'
 
     assert_equal exp, RidgepoleRake::Command.new(action, config).command

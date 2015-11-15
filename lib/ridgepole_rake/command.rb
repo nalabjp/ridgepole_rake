@@ -10,7 +10,7 @@ module RidgepoleRake
     end
 
     def execute
-      if !!config.use_clean_system
+      if !!config.bundler[:clean_system]
         Bunder.clean_system(command)
       else
         system(command)
@@ -42,7 +42,7 @@ module RidgepoleRake
       case action
       when :apply
         stash.push('--apply')
-        stash.push('--file', config.schema_file_path)
+        stash.push('--file', config.ridgepole.fetch(:schema_path))
         add_table_options
       when :merge
         stash.push('--merge')
@@ -50,16 +50,16 @@ module RidgepoleRake
         add_table_options
       when :export
         stash.push('--export')
-        stash.push('--output', config.schema_dump_path)
+        stash.push('--output', config.ridgepole.fetch(:export_path))
       when :diff
-        stash.push('--diff', database_configuration, config.schema_file_path)
+        stash.push('--diff', database_configuration, config.ridgepole.fetch(:schema_path))
       else
         raise UndefinedActionError, "Undefined action: '#{action}'"
       end
     end
 
     def add_table_options
-      stash.push('--table_options', config.table_options) if config.table_options
+      stash.push('--table_options', config.ridgepole[:table_options]) if config.ridgepole[:table_options]
     end
 
     def add_dry_run
@@ -67,15 +67,15 @@ module RidgepoleRake
     end
 
     def add_require_options
-      stash.push('--require', config.require_options) if config.require_options
+      stash.push('--require', config.ridgepole[:require]) if config.ridgepole[:require]
     end
 
     def add_misc
-      stash.push(config.misc) if config.misc
+      stash.push(config.ridgepole[:misc]) if config.ridgepole[:misc]
     end
 
     def add_env
-      stash.push('--env', config.env)
+      stash.push('--env', config.ridgepole.fetch(:env))
     end
 
     def add_db_config
@@ -84,14 +84,14 @@ module RidgepoleRake
 
     def add_ridgepole
       stash.unshift('ridgepole')
-      stash.unshift('bundle exec') if config.use_bundler
+      stash.unshift('bundle exec') if config.bundler[:enable]
     end
 
     def database_configuration
-      if config.use_brancher && (yaml = database_configuration_with_brancher)
+      if config.brancher[:enable] && (yaml = database_configuration_with_brancher)
         yaml
       else
-        config.db_config
+        config.ridgepole.fetch(:config)
       end
     end
 
@@ -99,9 +99,9 @@ module RidgepoleRake
       begin
         require 'brancher'
         require 'erb'
-        configurations = YAML.load(ERB.new(File.read(config.db_config)).result)
-        Brancher::DatabaseRenameService.rename!(configurations, config.env)
-        yaml = configurations[config.env].to_yaml
+        configurations = YAML.load(ERB.new(File.read(config.ridgepole.fetch(:config))).result)
+        Brancher::DatabaseRenameService.rename!(configurations, config.ridgepole.fetch(:env))
+        yaml = configurations[config.ridgepole.fetch(:env)].to_yaml
         yaml.sub(/---\n/, '') if action.eql?(:diff)
         yaml
       rescue LoadError
