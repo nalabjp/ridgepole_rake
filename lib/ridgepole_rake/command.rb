@@ -50,11 +50,18 @@ module RidgepoleRake
     end
 
     def command
-      build if stash.empty?
-      join
+      @command ||= begin
+                     clear
+                     build
+                     join
+                   end
     end
 
     private
+
+    def clear
+      stash.clear
+    end
 
     def build
       add_action
