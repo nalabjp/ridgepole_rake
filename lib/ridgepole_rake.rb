@@ -9,6 +9,11 @@ begin
   require 'ridgepole_rake/ext/brancher'
 rescue LoadError
 end
+begin
+  require 'bundler'
+  require 'ridgepole_rake/ext/bundler'
+rescue LoadError
+end
 
 module RidgepoleRake
   extend self

@@ -10,11 +10,7 @@ module RidgepoleRake
     end
 
     def execute
-      if !!config.bundler[:clean_system]
-        Bunder.clean_system(command)
-      else
-        system(command)
-      end
+      system(command)
     end
 
     def command
@@ -84,7 +80,6 @@ module RidgepoleRake
 
     def add_ridgepole
       stash.unshift('ridgepole')
-      stash.unshift('bundle exec') if config.bundler[:enable]
     end
   end
 
