@@ -34,17 +34,17 @@ namespace :ridgepole do
   end
 
   desc '`ridgepole --merge`'
-  task :merge, [:table_or_patch] => %i( environment configure ) do
-    raise 'Require table schema file or patch file' if args.table_or_patch.blank?
+  task :merge, [:merge_file] => %i( environment configure ) do
+    raise 'Require table schema file or patch file' if args.merge_file.blank?
 
-    RidgepoleRake::Tasks.merge(args.table_or_patch)
+    RidgepoleRake::Tasks.merge(args.merge_file)
   end
 
   desc '`ridgepole --merge --dry-run`'
-  task 'merge_dry-run', [:table_or_patch] => %i( environment configure ) do
-    raise 'Require table schema file or patch file' if args.table_or_patch.blank?
+  task 'merge_dry-run', [:merge_file] => %i( environment configure ) do
+    raise 'Require table schema file or patch file' if args.merge_file.blank?
 
-    RidgepoleRake::Tasks.merge(args.table_or_patch, true)
+    RidgepoleRake::Tasks.merge(args.merge_file, true)
   end
 
   desc '`ridgepole --export`'
