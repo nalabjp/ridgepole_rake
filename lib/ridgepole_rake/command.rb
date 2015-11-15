@@ -46,7 +46,7 @@ module RidgepoleRake
         add_table_options
       when :merge
         stash.push('--merge')
-        stash.push('--file', options[:table_or_patch])
+        stash.push('--file', options[:merge_file])
         add_table_options
       when :export
         stash.push('--export')
