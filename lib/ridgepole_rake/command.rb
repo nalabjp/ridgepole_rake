@@ -27,6 +27,7 @@ module RidgepoleRake
       reverse
       with-apply
       enable-mysql-awesome
+      mysql-use-alter
       dump-without-table-options
       index-removed-drop-column
       enable-migration-comments
