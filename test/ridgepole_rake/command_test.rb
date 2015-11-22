@@ -118,6 +118,7 @@ original_database: custom
       'reverse'                    => true,
       'with-apply'                 => true,
       'tables'                     => 'table1',
+      't'                          => 'table1',
       'ignore-tables'              => 'table2',
       'enable-mysql-awesome'       => true,
       'mysql-use-alter'            => true,
@@ -125,12 +126,14 @@ original_database: custom
       'index-removed-drop-column'  => true,
       'enable-migration-comments'  => true,
       'require'                    => 'requires.rb',
+      'r'                          => 'requires.rb',
       'log-file'                   => 'log-file.log',
       'verbose'                    => true,
       'debug'                      => true,
-      'version'                    => true
+      'version'                    => true,
+      'v'                          => true
     })
-    exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --env test --config config/database.yml --table-options ENGINE=INNODB --bulk-change --default-bool-limit 1 --default-int-limit 2 --default-float-limit 3 --default-string-limit 4 --default-text-limit 5 --default-binary-limit 6 --pre-query "any query1" --post-query "any query2" --split --split-with-dir --reverse --with-apply --tables table1 --ignore-tables table2 --enable-mysql-awesome --mysql-use-alter --dump-without-table-options --index-removed-drop-column --enable-migration-comments --require requires.rb --log-file log-file.log --verbose --debug --version'
+    exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --env test --config config/database.yml --table-options ENGINE=INNODB --bulk-change --default-bool-limit 1 --default-int-limit 2 --default-float-limit 3 --default-string-limit 4 --default-text-limit 5 --default-binary-limit 6 --pre-query "any query1" --post-query "any query2" --split --split-with-dir --reverse --with-apply --tables table1 -t table1 --ignore-tables table2 --enable-mysql-awesome --mysql-use-alter --dump-without-table-options --index-removed-drop-column --enable-migration-comments --require requires.rb -r requires.rb --log-file log-file.log --verbose --debug --version -v'
 
     assert_equal exp, RidgepoleRake::Command.new(action, config).command
   end
