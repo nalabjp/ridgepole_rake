@@ -32,15 +32,17 @@ namespace :ridgepole do
     RidgepoleRake::Tasks.export
   end
 
-  desc '`rake db:drop`, `rake db:create` and `ridgepole --apply`'
-  task reset: :environment do
-    ActiveRecord::Tasks::DatabaseTasks.drop_current
-    ActiveRecord::Tasks::DatabaseTasks.create_current
-    RidgepoleRake::Tasks.apply
-  end
-
   desc 'diff current db schema and current schema file'
   task diff: :environment do
     RidgepoleRake::Tasks.diff
+  end
+
+  if defined?(ActiveRecord)
+    desc '`rake db:drop`, `rake db:create` and `ridgepole --apply`'
+    task reset: :environment do
+      ActiveRecord::Tasks::DatabaseTasks.drop_current
+      ActiveRecord::Tasks::DatabaseTasks.create_current
+      RidgepoleRake::Tasks.apply
+    end
   end
 end
