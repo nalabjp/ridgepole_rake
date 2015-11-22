@@ -124,7 +124,11 @@ module RidgepoleRake
     def extra_options
       configurable_options.each_with_object([]) do |(k, v), arr|
         v = nil if NON_VALUE_KEYS.include?(k)
-        k = k.size.eql?(1) ? "-#{k}" : "--#{k}"
+        if /\A[rtv]\z/ =~ k
+          k = "-#{k}"
+        elsif /\A[a-z].+\z/ =~ k
+          k = "--#{k}"
+        end
         arr.push(k, v)
       end.compact
     end
