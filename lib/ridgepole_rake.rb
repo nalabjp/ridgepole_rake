@@ -5,6 +5,11 @@ require 'ridgepole_rake/command'
 require 'ridgepole_rake/tasks'
 require 'ridgepole_rake/version'
 begin
+  require 'rails'
+  require 'ridgepole_rake/ext/rails'
+rescue LoadError
+end
+begin
   require 'brancher'
   require 'ridgepole_rake/ext/brancher'
 rescue LoadError

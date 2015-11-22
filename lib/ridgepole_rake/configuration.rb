@@ -9,17 +9,11 @@ module RidgepoleRake
     private
 
     def default_ridgepole_options
-      env = begin
-              require 'rails'
-              Rails.env
-            rescue LoadError
-              'development'
-            end
       {
         config: 'config/database.yml',
         file:   'db/schemas/Schemafile',
         output: 'db/schemas.dump/Schemafile',
-        env:    env,
+        env:    'development',
       }
     end
   end
