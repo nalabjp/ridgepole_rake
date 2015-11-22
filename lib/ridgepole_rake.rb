@@ -4,20 +4,17 @@ require 'ridgepole_rake/configuration'
 require 'ridgepole_rake/command'
 require 'ridgepole_rake/tasks'
 require 'ridgepole_rake/version'
-begin
-  require 'rails'
-  require 'ridgepole_rake/ext/rails'
-rescue LoadError
-end
-begin
-  require 'brancher'
-  require 'ridgepole_rake/ext/brancher'
-rescue LoadError
-end
-begin
-  require 'bundler'
-  require 'ridgepole_rake/ext/bundler'
-rescue LoadError
+
+%w(
+  rails
+  bundler
+  brancher
+).each do |extension|
+  begin
+    require extension
+    require "ridgepole_rake/ext/#{extension}"
+  rescue LoadError
+  end
 end
 
 module RidgepoleRake
