@@ -17,6 +17,8 @@ require 'ridgepole_rake/version'
   end
 end
 
+require 'ridgepole_rake/railtie' if defined?(Rails)
+
 module RidgepoleRake
   extend self
 
