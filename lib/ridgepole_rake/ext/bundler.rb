@@ -16,7 +16,7 @@ module RidgepoleRake
       # @note override
       def execute
         if config.bundler[:enable] && config.bundler[:clean_system]
-          Bundler.clean_system(command)
+          ::Bundler.clean_system(command)
         else
           super
         end
