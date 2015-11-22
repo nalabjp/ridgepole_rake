@@ -70,4 +70,14 @@ class RidgepoleTasksTest < Minitest::Test
     assert_equal :diff, @args[0]
     assert_equal nil, @args[1]
   end
+
+  def test_run
+    RidgepoleRake.config.bundler[:enable] = false
+    RidgepoleRake::Command.stub_any_instance(:execute, nil) do
+      expect = "-----\nExecuted command => ridgepole --apply --file db/schemas/Schemafile --env test --config config/database.yml\n"
+      assert_output(expect) do
+        RidgepoleRake::Tasks.apply
+      end
+    end
+  end
 end

@@ -7,4 +7,5 @@ CodeClimate::TestReporter.start
 require 'pry'
 require 'ridgepole_rake'
 
+require 'minitest/stub_any_instance'
 require 'minitest/autorun'
