@@ -1,5 +1,9 @@
 require 'active_support/core_ext/hash'
+
+require 'ridgepole'
+
 require 'ridgepole_rake/configuration'
+require 'ridgepole_rake/option'
 require 'ridgepole_rake/command'
 require 'ridgepole_rake/tasks'
 require 'ridgepole_rake/version'

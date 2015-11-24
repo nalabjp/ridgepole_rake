@@ -1,41 +1,5 @@
 module RidgepoleRake
   class Command
-    IGNORE_KEYS = %w(
-      apply
-      a
-      merge
-      m
-      export
-      e
-      diff
-      d
-      config
-      c
-      env
-      E
-      file
-      f
-      output
-      o
-      dry-run
-    ).freeze
-
-    NON_VALUE_KEYS = %w(
-      bulk-change
-      split
-      split-with-dir
-      reverse
-      with-apply
-      enable-mysql-awesome
-      mysql-use-alter
-      dump-without-table-options
-      index-removed-drop-column
-      enable-migration-comments
-      verbose
-      debug
-      version
-      v
-    ).freeze
 
     attr_reader :stash, :action, :config, :options
 
@@ -123,18 +87,14 @@ module RidgepoleRake
 
     def extra_options
       configurable_options.each_with_object([]) do |(k, v), arr|
-        v = nil if NON_VALUE_KEYS.include?(k)
-        if /\A[rtv]\z/ =~ k
-          k = "-#{k}"
-        elsif /\A[a-z].+\z/ =~ k
-          k = "--#{k}"
-        end
+        v = nil if Option.non_value_key?(k)
+        k = Option.add_hyphens_if_needed(k)
         arr.push(k, v)
       end.compact
     end
 
     def configurable_options
-      config.ridgepole.except(*IGNORE_KEYS)
+      config.ridgepole.except(*Option.ignored_keys).slice(*Option.recognized_keys)
     end
 
     def add_ridgepole
