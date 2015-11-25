@@ -27,9 +27,9 @@
     - split-with-dir
     - reverse
     - with-apply
-    - table
+    - tables
     - t
-    - ignore-table
+    - ignore-tables
     - enable-mysql-unsigned
     - enable-mysql-pkdump
     - enable-mysql-foreigner
@@ -66,9 +66,9 @@
     - split-with-dir
     - reverse
     - with-apply
-    - table
+    - tables
     - t
-    - ignore-table
+    - ignore-tables
     - enable-mysql-unsigned
     - enable-mysql-pkdump
     - enable-mysql-foreigner
@@ -107,9 +107,9 @@
     - split-with-dir
     - reverse
     - with-apply
-    - table
+    - tables
     - t
-    - ignore-table
+    - ignore-tables
     - enable-mysql-unsigned
     - enable-mysql-pkdump
     - enable-mysql-foreigner
@@ -164,9 +164,9 @@
     - split-with-dir
     - reverse
     - with-apply
-    - table
+    - tables
     - t
-    - ignore-table
+    - ignore-tables
     - enable-mysql-awesome
     - dump-without-table-options
     - index-removed-drop-column
@@ -218,9 +218,9 @@
     - split-with-dir
     - reverse
     - with-apply
-    - table
+    - tables
     - t
-    - ignore-table
+    - ignore-tables
     - enable-mysql-awesome
     - dump-without-table-options
     - index-removed-drop-column
