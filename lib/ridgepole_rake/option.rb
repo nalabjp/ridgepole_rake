@@ -18,7 +18,7 @@ module RidgepoleRake
     end
 
     def ignored_keys
-      stash.fetch('ignore_keys')
+      stash.fetch('ignored_keys')
     end
 
     def recognized_keys
