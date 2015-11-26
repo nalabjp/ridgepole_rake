@@ -134,6 +134,13 @@ original_database: custom
     }) # Ridgepole v0.6.3 only
     exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --env test --config config/database.yml --table-options ENGINE=INNODB --bulk-change --default-bool-limit 1 --default-int-limit 2 --default-float-limit 3 --default-string-limit 4 --default-text-limit 5 --default-binary-limit 6 --pre-query "any query1" --post-query "any query2" --split --split-with-dir --reverse --with-apply --tables table1 -t table1 --ignore-tables table2 --enable-mysql-awesome --dump-without-table-options --index-removed-drop-column --enable-migration-comments --require requires.rb -r requires.rb --log-file log-file.log --verbose --debug --version -v'
 
-    assert_equal exp, RidgepoleRake::Command.new(action, config).command
-  end if Ridgepole::VERSION == '0.6.3'
+    RidgepoleRake::Option.stub(:ridgepole_version, '0.6.3') do
+      old_stash = RidgepoleRake::Option.__send__(:stash)
+      RidgepoleRake::Option.instance_variable_set(:@stash, nil)
+
+      assert_equal exp, RidgepoleRake::Command.new(action, config).command
+
+      RidgepoleRake::Option.instance_variable_set(:@stash, old_stash)
+    end
+  end
 end

@@ -36,11 +36,15 @@ module RidgepoleRake
     private
 
     def stash
-      @stash ||= YAML.load_file(yaml_path).fetch(Ridgepole::VERSION)
+      @stash ||= YAML.load_file(yaml_path).fetch(ridgepole_version)
     end
 
     def yaml_path
       File.expand_path('option_keys.yml', File.dirname(__FILE__))
+    end
+
+    def ridgepole_version
+      Ridgepole::VERSION
     end
   end
 end
