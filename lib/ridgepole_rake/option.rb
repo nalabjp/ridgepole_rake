@@ -8,7 +8,7 @@ module RidgepoleRake
 
     def add_hyphens_if_needed(key)
       case key.to_s
-      when /\A[#{single_char_keys}]\z/
+      when /\A[#{single_char_keys.join}]\z/
         "-#{key}"
       when /\A[a-z].+\z/
         "--#{key}"
