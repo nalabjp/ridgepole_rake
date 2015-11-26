@@ -42,4 +42,406 @@ class RidgepoleRake::OptionTest < Minitest::Test
       assert_equal ['g', 'h'], RidgepoleRake::Option.single_char_keys
     end
   end
+
+  def test_stash_in_version_0_5_0
+    exp_hash = {
+      'ignored_keys' => %w(
+        config
+        c
+        env
+        E
+        apply
+        a
+        merge
+        m
+        file
+        f
+        dry-run
+        export
+        e
+        diff
+        d
+        output
+        o
+      ),
+      'recognized_keys' => %w(
+        table-options
+        bulk-change
+        default-int-limit
+        pre-query
+        post-query
+        split
+        split-with-dir
+        reverse
+        with-apply
+        tables
+        t
+        ignore-tables
+        enable-mysql-unsigned
+        enable-mysql-pkdump
+        enable-mysql-foreigner
+        log-file
+        verbose
+        debug
+        version
+        v
+      ),
+      'non_value_keys' => %w(
+        bulk-change
+        split
+        split-with-dir
+        reverse
+        with-apply
+        enable-mysql-unsigned
+        enable-mysql-pkdump
+        enable-mysql-foreigner
+        verbose
+        debug
+        version
+        v
+      ),
+      'single_char_keys' => %w(
+        t
+        v
+      )
+    }
+
+    RidgepoleRake::Option.stub(:ridgepole_version, '0.5.0') do
+      old_stash = RidgepoleRake::Option.__send__(:stash)
+      RidgepoleRake::Option.instance_variable_set(:@stash, nil)
+
+      assert_equal exp_hash, RidgepoleRake::Option.__send__(:stash)
+
+      RidgepoleRake::Option.instance_variable_set(:@stash, old_stash)
+    end
+  end
+
+  def test_stash_in_version_0_5_1
+    exp_hash = {
+      'ignored_keys' => %w(
+        config
+        c
+        env
+        E
+        apply
+        a
+        merge
+        m
+        file
+        f
+        dry-run
+        export
+        e
+        diff
+        d
+        output
+        o
+      ),
+      'recognized_keys' => %w(
+        table-options
+        bulk-change
+        default-int-limit
+        pre-query
+        post-query
+        split
+        split-with-dir
+        reverse
+        with-apply
+        tables
+        t
+        ignore-tables
+        enable-mysql-unsigned
+        enable-mysql-pkdump
+        enable-mysql-foreigner
+        enable-migration-comments
+        normalize-mysql-float
+        log-file
+        verbose
+        debug
+        version
+        v
+      ),
+      'non_value_keys' => %w(
+        bulk-change
+        split
+        split-with-dir
+        reverse
+        with-apply
+        enable-mysql-unsigned
+        enable-mysql-pkdump
+        enable-mysql-foreigner
+        enable-migration-comments
+        normalize-mysql-float
+        verbose
+        debug
+        version
+        v
+      ),
+      'single_char_keys' => %w(
+        t
+        v
+      )
+    }
+
+    RidgepoleRake::Option.stub(:ridgepole_version, '0.5.1') do
+      old_stash = RidgepoleRake::Option.__send__(:stash)
+      RidgepoleRake::Option.instance_variable_set(:@stash, nil)
+
+      assert_equal exp_hash, RidgepoleRake::Option.__send__(:stash)
+
+      RidgepoleRake::Option.instance_variable_set(:@stash, old_stash)
+    end
+  end
+
+  def test_stash_in_version_0_5_2
+    exp_hash = {
+      'ignored_keys' => %w(
+        config
+        c
+        env
+        E
+        apply
+        a
+        merge
+        m
+        file
+        f
+        dry-run
+        export
+        e
+        diff
+        d
+        output
+        o
+      ),
+      'recognized_keys' => %w(
+        table-options
+        bulk-change
+        default-int-limit
+        pre-query
+        post-query
+        split
+        split-with-dir
+        reverse
+        with-apply
+        tables
+        t
+        ignore-tables
+        enable-mysql-unsigned
+        enable-mysql-pkdump
+        enable-mysql-foreigner
+        enable-migration-comments
+        normalize-mysql-float
+        enable-mysql-awesome
+        mysql-awesome-unsigned-pk
+        dump-without-table-options
+        require
+        r
+        log-file
+        verbose
+        debug
+        version
+        v
+      ),
+      'non_value_keys' => %w(
+        bulk-change
+        split
+        split-with-dir
+        reverse
+        with-apply
+        enable-mysql-unsigned
+        enable-mysql-pkdump
+        enable-mysql-foreigner
+        enable-migration-comments
+        normalize-mysql-float
+        enable-mysql-awesome
+        mysql-awesome-unsigned-pk
+        dump-without-table-options
+        verbose
+        debug
+        version
+        v
+      ),
+      'single_char_keys' => %w(
+        r
+        t
+        v
+      )
+    }
+
+    RidgepoleRake::Option.stub(:ridgepole_version, '0.5.2') do
+      old_stash = RidgepoleRake::Option.__send__(:stash)
+      RidgepoleRake::Option.instance_variable_set(:@stash, nil)
+
+      assert_equal exp_hash, RidgepoleRake::Option.__send__(:stash)
+
+      RidgepoleRake::Option.instance_variable_set(:@stash, old_stash)
+    end
+  end
+
+  def test_stash_in_version_0_6_0_to_0_6_2
+    exp_hash = {
+      'ignored_keys' => %w(
+        config
+        c
+        env
+        E
+        apply
+        a
+        merge
+        m
+        file
+        f
+        dry-run
+        export
+        e
+        diff
+        d
+        output
+        o
+      ),
+      'recognized_keys' => %w(
+        table-options
+        bulk-change
+        default-bool-limit
+        default-int-limit
+        default-float-limit
+        default-string-limit
+        default-text-limit
+        default-binary-limit
+        pre-query
+        post-query
+        split
+        split-with-dir
+        reverse
+        with-apply
+        tables
+        t
+        ignore-tables
+        enable-mysql-awesome
+        dump-without-table-options
+        index-removed-drop-column
+        require
+        r
+        log-file
+        verbose
+        debug
+        version
+        v
+      ),
+      'non_value_keys' => %w(
+        bulk-change
+        split
+        split-with-dir
+        reverse
+        with-apply
+        enable-mysql-awesome
+        dump-without-table-options
+        index-removed-drop-column
+        verbose
+        debug
+        version
+        v
+      ),
+      'single_char_keys' => %w(
+        r
+        t
+        v
+      )
+    }
+
+    %w(0.6.0 0.6.1 0.6.2).each do |version|
+      RidgepoleRake::Option.stub(:ridgepole_version, version) do
+        old_stash = RidgepoleRake::Option.__send__(:stash)
+        RidgepoleRake::Option.instance_variable_set(:@stash, nil)
+
+        assert_equal exp_hash, RidgepoleRake::Option.__send__(:stash)
+
+        RidgepoleRake::Option.instance_variable_set(:@stash, old_stash)
+      end
+    end
+  end
+
+  def test_stash_in_version_0_6_3
+    exp_hash = {
+      'ignored_keys' => %w(
+        config
+        c
+        env
+        E
+        apply
+        a
+        merge
+        m
+        file
+        f
+        dry-run
+        export
+        e
+        diff
+        d
+        output
+        o
+      ),
+      'recognized_keys' => %w(
+        table-options
+        bulk-change
+        default-bool-limit
+        default-int-limit
+        default-float-limit
+        default-string-limit
+        default-text-limit
+        default-binary-limit
+        pre-query
+        post-query
+        split
+        split-with-dir
+        reverse
+        with-apply
+        tables
+        t
+        ignore-tables
+        enable-mysql-awesome
+        dump-without-table-options
+        index-removed-drop-column
+        enable-migration-comments
+        require
+        r
+        log-file
+        verbose
+        debug
+        version
+        v
+      ),
+      'non_value_keys' => %w(
+        bulk-change
+        split
+        split-with-dir
+        reverse
+        with-apply
+        enable-mysql-awesome
+        dump-without-table-options
+        index-removed-drop-column
+        enable-migration-comments
+        verbose
+        debug
+        version
+        v
+      ),
+      'single_char_keys' => %w(
+        r
+        t
+        v
+      )
+    }
+
+    RidgepoleRake::Option.stub(:ridgepole_version, '0.6.3') do
+      old_stash = RidgepoleRake::Option.__send__(:stash)
+      RidgepoleRake::Option.instance_variable_set(:@stash, nil)
+
+      assert_equal exp_hash, RidgepoleRake::Option.__send__(:stash)
+
+      RidgepoleRake::Option.instance_variable_set(:@stash, old_stash)
+    end
+  end
 end
