@@ -144,9 +144,9 @@
     - version
     - v
   single_char_keys: &052_single_char_keys
+    - r
     - t
     - v
-    - r
 0.6.0:
   ignored_keys: *050_ignored_keys
   recognized_keys: &060_recognized_keys
