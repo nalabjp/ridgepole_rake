@@ -11,4 +11,4 @@ module RidgepoleRake
   end
 end
 
-RidgepoleRake::Configuration.__send__(:prepend, RidgepoleRake::Rails::Configuration)
+RidgepoleRake::Configuration.prepend(RidgepoleRake::Rails::Configuration)

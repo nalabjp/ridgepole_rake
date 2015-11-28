@@ -55,5 +55,5 @@ module RidgepoleRake
   end
 end
 
-RidgepoleRake::Configuration.__send__(:prepend, RidgepoleRake::Brancher::Configuration)
-RidgepoleRake::Command.__send__(:prepend, RidgepoleRake::Brancher::Command)
+RidgepoleRake::Configuration.prepend(RidgepoleRake::Brancher::Configuration)
+RidgepoleRake::Command.prepend(RidgepoleRake::Brancher::Command)

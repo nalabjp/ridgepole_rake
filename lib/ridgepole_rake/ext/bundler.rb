@@ -34,5 +34,5 @@ module RidgepoleRake
   end
 end
 
-RidgepoleRake::Configuration.__send__(:prepend, RidgepoleRake::Bundler::Configuration)
-RidgepoleRake::Command.__send__(:prepend, RidgepoleRake::Bundler::Command)
+RidgepoleRake::Configuration.prepend(RidgepoleRake::Bundler::Configuration)
+RidgepoleRake::Command.prepend(RidgepoleRake::Bundler::Command)
