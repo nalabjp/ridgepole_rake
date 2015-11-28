@@ -16,7 +16,5 @@ group :test do
   gem 'minitest-power_assert'
   gem 'minitest-stub_any_instance'
   gem 'minitest-reporters'
-  gem 'brancher'
-  gem 'rails'
-  gem 'codeclimate-test-reporter', require: false
+  gem "codeclimate-test-reporter", require: false
 end
