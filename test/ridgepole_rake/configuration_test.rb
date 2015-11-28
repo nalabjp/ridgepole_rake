@@ -5,7 +5,7 @@ class RidgepoleRake::ConfigurationTest < Minitest::Test
     RidgepoleRake.instance_variable_set(:@config, nil)
   end
 
-  def test_db_config
+  def test_config
     assert_equal 'config/database.yml', RidgepoleRake.config.ridgepole[:config]
 
     RidgepoleRake.configure do |config|
@@ -15,7 +15,7 @@ class RidgepoleRake::ConfigurationTest < Minitest::Test
     assert_equal 'new_db_config', RidgepoleRake.config.ridgepole[:config]
   end
 
-  def test_schema_file_path
+  def test_file
     assert_equal 'db/schemas/Schemafile', RidgepoleRake.config.ridgepole[:file]
 
     RidgepoleRake.configure do |config|
@@ -25,7 +25,7 @@ class RidgepoleRake::ConfigurationTest < Minitest::Test
     assert_equal 'new_schema_dir/new_schema_file', RidgepoleRake.config.ridgepole[:file]
   end
 
-  def test_schema_dump_file_path
+  def test_output
     assert_equal 'db/schemas.dump/Schemafile', RidgepoleRake.config.ridgepole[:output]
 
     RidgepoleRake.configure do |config|
