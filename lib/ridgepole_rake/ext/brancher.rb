@@ -36,9 +36,7 @@ module RidgepoleRake
 
         ::Brancher::DatabaseRenameService.rename!(configurations, env)
 
-        yaml = configurations[env].to_yaml
-        yaml.sub(/\A---\n/, '') if action.eql?(:diff)
-        yaml
+        configurations[env].to_yaml
       end
 
       def load_configurations
@@ -47,7 +45,11 @@ module RidgepoleRake
 
       # @note override
       def add_diff_action
-        stash.push('--diff', database_configuration, config.ridgepole.fetch(:file))
+        stash.push('--diff', remove_first_line_in_yaml(database_configuration), config.ridgepole.fetch(:file))
+      end
+
+      def remove_first_line_in_yaml(yaml)
+        yaml.sub(/\A---\n/, '')
       end
     end
   end
