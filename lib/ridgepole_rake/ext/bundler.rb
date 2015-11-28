@@ -18,7 +18,8 @@ module RidgepoleRake
         if config.bundler[:use] && config.bundler[:clean_system]
           ::Bundler.clean_system(command)
         else
-          super
+          # TODO: Raise stack level too deep when call `super`
+          Kernel.system(command)
         end
       end
 
