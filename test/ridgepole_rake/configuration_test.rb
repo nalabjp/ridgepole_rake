@@ -36,23 +36,17 @@ class RidgepoleRake::ConfigurationTest < Minitest::Test
   end
 
   def test_env
-    assert_equal 'test', RidgepoleRake.config.ridgepole[:env]
+    if defined?(::Rails)
+      assert_equal 'test', RidgepoleRake.config.ridgepole[:env]
+    else
+      assert_equal 'development', RidgepoleRake.config.ridgepole[:env]
+    end
 
     RidgepoleRake.configure do |config|
       config.ridgepole[:env] = 'production'
     end
 
     assert_equal 'production', RidgepoleRake.config.ridgepole[:env]
-  end
-
-  def test_use_brancher
-    assert RidgepoleRake.config.brancher[:use]
-
-    RidgepoleRake.configure do |config|
-      config.brancher[:use] = false
-    end
-
-    assert_equal false, RidgepoleRake.config.brancher[:use]
   end
 
   def test_use_bundler

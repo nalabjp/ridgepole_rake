@@ -74,6 +74,7 @@ class RidgepoleTasksTest < Minitest::Test
   def test_run
     RidgepoleRake.instance_variable_set(:@config, nil)
     RidgepoleRake.config.bundler[:use] = false
+    RidgepoleRake.config.ridgepole[:env] = 'test'
     RidgepoleRake::Command.stub_any_instance(:execute, nil) do
       expect = "-----\nExecuted command => ridgepole --apply --file db/schemas/Schemafile --env test --config config/database.yml\n"
       assert_output(expect) do
