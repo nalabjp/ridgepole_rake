@@ -8,4 +8,8 @@ require 'pry'
 require 'ridgepole_rake'
 
 require 'minitest/stub_any_instance'
+require 'minitest/reporters'
+
+Minitest::Reporters.use!
+
 require 'minitest/autorun'
