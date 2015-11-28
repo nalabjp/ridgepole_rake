@@ -6,6 +6,22 @@ class RidgepoleRake::CommandTest < Minitest::Test
     RidgepoleRake.config.ridgepole[:env] = 'test'
   end
 
+  def test_execute
+    RidgepoleRake.config.bundler[:clean_system] = false
+    executed_cmd = ''
+    mock = Minitest::Mock.new
+    mock.expect(:call, nil) do |command|
+      executed_cmd = command
+    end
+
+    Kernel.stub(:system, mock) do
+      RidgepoleRake::Command.new(:apply, RidgepoleRake.config).execute
+    end
+
+    mock.verify
+    assert_equal false, executed_cmd.empty?
+  end
+
   def test_command_with_apply_action
     action = :apply
     config = RidgepoleRake.config

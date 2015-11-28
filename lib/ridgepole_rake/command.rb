@@ -11,7 +11,7 @@ module RidgepoleRake
     end
 
     def execute
-      system(command)
+      Kernel.system(command)
     end
 
     def command
