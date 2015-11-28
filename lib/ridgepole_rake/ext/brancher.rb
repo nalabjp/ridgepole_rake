@@ -31,12 +31,18 @@ module RidgepoleRake
       end
 
       def database_configuration_with_brancher
-        config_yaml = File.read(config.ridgepole.fetch(:config))
-        configurations = YAML.load(ERB.new(config_yaml).result)
-        ::Brancher::DatabaseRenameService.rename!(configurations, config.ridgepole.fetch(:env))
-        yaml = configurations[config.ridgepole.fetch(:env)].to_yaml
-        yaml.sub(/---\n/, '') if action.eql?(:diff)
+        configurations = load_configurations
+        env = config.ridgepole.fetch(:env)
+
+        ::Brancher::DatabaseRenameService.rename!(configurations, env)
+
+        yaml = configurations[env].to_yaml
+        yaml.sub(/\A---\n/, '') if action.eql?(:diff)
         yaml
+      end
+
+      def load_configurations
+        YAML.load(ERB.new(File.read(config.ridgepole.fetch(:config))).result)
       end
 
       # @note override
