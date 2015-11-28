@@ -3,7 +3,7 @@ if defined?(::Bundler)
 
   class RidgepoleRake::BundlerTest < Minitest::Test
     def setup
-      RidgepoleRake.instance_variable_set(:@config, nil)
+      RidgepoleRake.reset
     end
 
     def test_execute_with_bundler_clean_system

@@ -32,4 +32,9 @@ module RidgepoleRake
   def config
     @config ||= Configuration.new
   end
+
+  def reset
+    @config = nil
+    config
+  end
 end

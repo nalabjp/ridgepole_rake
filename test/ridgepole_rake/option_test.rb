@@ -1,6 +1,15 @@
 require 'test_helper'
 
 class RidgepoleRake::OptionTest < Minitest::Test
+  def setup
+    RidgepoleRake.reset
+    RidgepoleRake::Option.clear
+  end
+
+  def teardown
+    RidgepoleRake::Option.clear
+  end
+
   def test_non_value_key?
     RidgepoleRake::Option.stub(:non_value_keys, %w(x y)) do
       assert RidgepoleRake::Option.non_value_key?('x')

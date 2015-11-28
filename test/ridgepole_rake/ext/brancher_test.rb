@@ -3,7 +3,7 @@ if defined?(::Brancher)
 
   class RidgepoleRake::BrancherTest < Minitest::Test
     def setup
-      RidgepoleRake.instance_variable_set(:@config, nil)
+      RidgepoleRake.reset
     end
 
     def test_use_brancher

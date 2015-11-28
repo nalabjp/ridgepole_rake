@@ -2,7 +2,7 @@ require 'test_helper'
 
 class RidgepoleRake::ConfigurationTest < Minitest::Test
   def setup
-    RidgepoleRake.instance_variable_set(:@config, nil)
+    RidgepoleRake.reset
   end
 
   def test_config

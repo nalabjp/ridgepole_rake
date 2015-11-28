@@ -7,7 +7,7 @@ if defined?(::Rails)
 
   class RidgepoleRake::RailsTest < Minitest::Test
     def test_default_env_is_test
-      RidgepoleRake.instance_variable_set(:@config, nil)
+      RidgepoleRake.reset
       assert_equal 'test', RidgepoleRake.config.ridgepole[:env]
     end
 

@@ -2,12 +2,14 @@ require 'test_helper'
 
 class RidgepoleRake::CommandTest < Minitest::Test
   def setup
-    RidgepoleRake.instance_variable_set(:@config, nil)
+    RidgepoleRake.reset
     RidgepoleRake.config.ridgepole[:env] = 'test'
   end
 
   def test_execute
-    RidgepoleRake.config.bundler[:clean_system] = false
+    config = RidgepoleRake.config
+    config.bundler[:use] = false
+    config.bundler[:clean_system] = false
     executed_cmd = ''
     mock = Minitest::Mock.new
     mock.expect(:call, nil) do |command|
@@ -15,7 +17,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
     end
 
     Kernel.stub(:system, mock) do
-      RidgepoleRake::Command.new(:apply, RidgepoleRake.config).execute
+      RidgepoleRake::Command.new(:apply, config).execute
     end
 
     mock.verify

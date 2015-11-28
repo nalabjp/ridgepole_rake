@@ -33,6 +33,10 @@ module RidgepoleRake
       stash.fetch('single_char_keys')
     end
 
+    def clear
+      @stash = nil
+    end
+
     private
 
     def stash
