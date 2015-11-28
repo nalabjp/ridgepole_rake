@@ -1,6 +1,6 @@
 language: ruby
 cache: bundler
-bundler_args: --without production --deployment
+bundler_args: --without production
 rvm:
   - 2.1.6
   - 2.2.0
