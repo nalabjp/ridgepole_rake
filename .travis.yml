@@ -7,6 +7,9 @@ rvm:
   - 2.2.1
   - 2.2.2
   - 2.2.3
+gemfile:
+  - Gemfile
+  - Gemfile-rails
 before_install: gem install bundler -v 1.10.6
 addons:
   code_climate:
