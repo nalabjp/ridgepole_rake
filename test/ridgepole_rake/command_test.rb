@@ -55,6 +55,14 @@ class RidgepoleRake::CommandTest < Minitest::Test
     assert_equal exp, RidgepoleRake::Command.new(action, config, options).command
   end
 
+  def test_command_with_invalid_action
+    action = :invalid
+
+    assert_raises(RidgepoleRake::UndefinedActionError) do
+      RidgepoleRake::Command.new(action, RidgepoleRake.config).command
+    end
+  end
+
   def test_command_with_dry_run_option
     action = :apply
     config = RidgepoleRake.config
