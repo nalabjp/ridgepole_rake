@@ -24,7 +24,7 @@ module RidgepoleRake
 
       def database_configuration
         if config.brancher[:enable] && (yaml = database_configuration_with_brancher rescue nil)
-          yaml
+          action.eql?(:diff) ? remove_first_line_in_yaml(yaml) : yaml
         else
           config.ridgepole.fetch(:config)
         end
@@ -43,13 +43,13 @@ module RidgepoleRake
         YAML.load(ERB.new(File.read(config.ridgepole.fetch(:config))).result)
       end
 
-      # @note override
-      def add_diff_action
-        stash.push('--diff', remove_first_line_in_yaml(database_configuration), config.ridgepole.fetch(:file))
-      end
-
       def remove_first_line_in_yaml(yaml)
         yaml.sub(/\A---\n/, '')
+      end
+
+      # @note override
+      def add_diff_action
+        stash.push('--diff', database_configuration, config.ridgepole.fetch(:file))
       end
     end
   end
