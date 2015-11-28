@@ -10,7 +10,7 @@ rvm:
 gemfile:
   - Gemfile
   - Gemfile-rails
-  - Gemfile-brancher
+  - Gemfile-minimum
 before_install: gem install bundler -v 1.10.6
 addons:
   code_climate:
