@@ -1,5 +1,5 @@
 eval_gemfile File.expand_path(File.join(File.dirname(__FILE__), 'Gemfile'))
 
-ignored_gems = %w(brancher)
+ignored_gems = %w(brancher, rails)
 
 dependencies.delete_if {|g| ignored_gems.include?(g.name) }
