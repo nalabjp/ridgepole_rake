@@ -8,14 +8,14 @@ module RidgepoleRake
       # @note override
       def initialize
         super
-        @bundler = { enable: true, clean_system: true }.with_indifferent_access
+        @bundler = { use: true, clean_system: true }.with_indifferent_access
       end
     end
 
     module Command
       # @note override
       def execute
-        if config.bundler[:enable] && config.bundler[:clean_system]
+        if config.bundler[:use] && config.bundler[:clean_system]
           ::Bundler.clean_system(command)
         else
           super
@@ -27,7 +27,7 @@ module RidgepoleRake
       # @note override
       def add_ridgepole
         super
-        stash.unshift('bundle exec') if config.bundler[:enable]
+        stash.unshift('bundle exec') if config.bundler[:use]
       end
     end
   end

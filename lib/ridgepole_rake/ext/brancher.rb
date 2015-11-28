@@ -10,7 +10,7 @@ module RidgepoleRake
       # @note override
       def initialize
         super
-        @brancher = { enable: true }.with_indifferent_access
+        @brancher = { use: true }.with_indifferent_access
       end
     end
 
@@ -23,7 +23,7 @@ module RidgepoleRake
       end
 
       def database_configuration
-        if config.brancher[:enable] && (yaml = database_configuration_with_brancher rescue nil)
+        if config.brancher[:use] && (yaml = database_configuration_with_brancher rescue nil)
           action.eql?(:diff) ? remove_first_line_in_yaml(yaml) : yaml
         else
           config.ridgepole.fetch(:config)

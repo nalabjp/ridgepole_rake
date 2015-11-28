@@ -46,23 +46,23 @@ class RidgepoleRake::ConfigurationTest < Minitest::Test
   end
 
   def test_use_brancher
-    assert RidgepoleRake.config.brancher[:enable]
+    assert RidgepoleRake.config.brancher[:use]
 
     RidgepoleRake.configure do |config|
-      config.brancher[:enable] = false
+      config.brancher[:use] = false
     end
 
-    assert_equal false, RidgepoleRake.config.brancher[:enable]
+    assert_equal false, RidgepoleRake.config.brancher[:use]
   end
 
   def test_use_bundler
-    assert RidgepoleRake.config.bundler[:enable]
+    assert RidgepoleRake.config.bundler[:use]
 
     RidgepoleRake.configure do |config|
-      config.bundler[:enable] = false
+      config.bundler[:use] = false
     end
 
-    assert_equal false, RidgepoleRake.config.bundler[:enable]
+    assert_equal false, RidgepoleRake.config.bundler[:use]
   end
 
   def test_use_clean_system

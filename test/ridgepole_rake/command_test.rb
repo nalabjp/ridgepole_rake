@@ -3,7 +3,7 @@ require 'test_helper'
 class RidgepoleRake::CommandTest < Minitest::Test
   def setup
     RidgepoleRake.instance_variable_set(:@config, nil)
-    RidgepoleRake.config.brancher[:enable] = false
+    RidgepoleRake.config.brancher[:use] = false
   end
 
   def test_command_with_apply_action
@@ -69,7 +69,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
   def test_commnad_with_db_config_option_and_use_brancher
     action = :apply
     config = RidgepoleRake.config
-    config.brancher[:enable] = true
+    config.brancher[:use] = true
     config.ridgepole[:env] = 'custom_environment'
     config.ridgepole[:config] = 'test/fixtures/database_config.yml'
 
@@ -93,7 +93,7 @@ original_database: custom
   def test_command_without_bundler
     action = :apply
     config = RidgepoleRake.config
-    config.bundler[:enable] = false
+    config.bundler[:use] = false
     exp = 'ridgepole --apply --file db/schemas/Schemafile --env test --config config/database.yml'
 
     assert_equal exp, RidgepoleRake::Command.new(action, config).command
