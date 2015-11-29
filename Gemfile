@@ -14,7 +14,6 @@ group :test do
   gem 'minitest'
   gem 'minitest-around'
   gem 'minitest-power_assert'
-  gem 'minitest-stub_any_instance'
   gem 'minitest-reporters'
   gem "codeclimate-test-reporter", require: false
 end
