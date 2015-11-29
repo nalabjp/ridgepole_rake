@@ -1,17 +1,20 @@
 language: ruby
 cache: bundler
-bundler_args: --without production
+bundler_args: "--without production"
 rvm:
-  - 2.1.6
-  - 2.2.0
-  - 2.2.1
-  - 2.2.2
-  - 2.2.3
+- 2.1.6
+- 2.2.0
+- 2.2.1
+- 2.2.2
+- 2.2.3
 gemfile:
-  - Gemfile
-  - Gemfile-rails
-  - Gemfile-minimum
+- Gemfile
+- Gemfile-rails
+- Gemfile-minimum
 before_install: gem install bundler -v 1.10.6
 addons:
   code_climate:
     repo_token: f1d3de8fd8a6342cd1a107dd7619a218e433a338b4138a4dc3d0fb4a27060086
+notifications:
+  slack:
+    secure: crXLS0et/PmOSstxqTiyYH5rLXMMW3dyn4jX2Ks/RlWSXW8cuqjwXKIHJ4E4DTU1US6NQ7m9xIR3rUe3hLRFWwjZxrescYwZRhnpV32d09W+bk/WR96oEYmSbMSgArrBWbDFxO5g6fKZvUauftQ8jp1Krxa7ANjRLNYgMmpNbnIXLhOyjsuKBzOQrnyip3mMcpJjae1V81DhU5r8XbPdWpUzvjgowYaKc1IV1SYtrjGJH+w/JlAzb7aPKiyM7dGZw08nPS1kRNO8fUcIHaYwcvXifxQBxlgVb8YtkR7B+DCRtEea/sxZEVmAfXuAdahGKjMP6LsQfl1qJCWVVPpaRgYCd0+JGzTPRu3ReAy+TTHdlWbjWtf+kmhkxXRRkwJEVhA7aLlgzFyNAfYg1fICxuzppzjeK3t8BOlkSEfjV37QPacgo19h5wTT5pyddcCfiOVWSTRCUCXBq4D7AXt2jVDxJtW01sGDmh9Z726HAec5zDYJNAX4UKinf9f2dzD3gknD23IFerkdl/HyxTEKrVvE9dVlVeaOsjuyEPiJdM/IjdVmPEIb4RVYwYDSfoks98rnd/k5JO/TPOMBAlJC3qYNr1QK6R5NcrBxLpCRSnAZT1vUn0CkBBhbPbVH70U+zH2iOFJSL6R5ev8oHJdPuYie224joY6ShvoErtcZa3M=
