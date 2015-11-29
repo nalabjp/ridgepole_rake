@@ -1,3 +1,5 @@
+Rake::Task.define_task :environment unless Rake::Task.task_defined?(:environment)
+
 namespace :ridgepole do
   desc '`ridgepole --apply`'
   task apply: :environment do
@@ -12,18 +14,18 @@ namespace :ridgepole do
   end
 
   desc '`ridgepole --merge`'
-  task :merge, [:merge_file] => :environment do
-    raise 'Require table schema file or execution file' if args.merge_file.blank?
+  task :merge, [:file] => :environment do |_t, args|
+    raise 'Require table schema file or execution file' if args.file.blank?
 
-    RidgepoleRake::Tasks.merge(args.merge_file)
+    RidgepoleRake::Tasks.merge(args.file)
   end
 
   desc '`ridgepole --merge --dry-run`'
   namespace :merge do
-    task 'dry-run', [:merge_file] => :environment do
-      raise 'Require table schema file or execution file' if args.merge_file.blank?
+    task 'dry-run', [:file] => :environment do |_t, args|
+      raise 'Require table schema file or execution file' if args.file.blank?
 
-      RidgepoleRake::Tasks.merge(args.merge_file, true)
+      RidgepoleRake::Tasks.merge(args.file, true)
     end
   end
 
