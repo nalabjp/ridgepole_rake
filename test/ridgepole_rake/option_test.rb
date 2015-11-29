@@ -116,12 +116,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
     }
 
     RidgepoleRake::Option.stub(:ridgepole_version, '0.5.0') do
-      old_stash = RidgepoleRake::Option.__send__(:stash)
-      RidgepoleRake::Option.instance_variable_set(:@stash, nil)
-
       assert_equal exp_hash, RidgepoleRake::Option.__send__(:stash)
-
-      RidgepoleRake::Option.instance_variable_set(:@stash, old_stash)
     end
   end
 
@@ -193,12 +188,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
     }
 
     RidgepoleRake::Option.stub(:ridgepole_version, '0.5.1') do
-      old_stash = RidgepoleRake::Option.__send__(:stash)
-      RidgepoleRake::Option.instance_variable_set(:@stash, nil)
-
       assert_equal exp_hash, RidgepoleRake::Option.__send__(:stash)
-
-      RidgepoleRake::Option.instance_variable_set(:@stash, old_stash)
     end
   end
 
@@ -279,12 +269,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
     }
 
     RidgepoleRake::Option.stub(:ridgepole_version, '0.5.2') do
-      old_stash = RidgepoleRake::Option.__send__(:stash)
-      RidgepoleRake::Option.instance_variable_set(:@stash, nil)
-
       assert_equal exp_hash, RidgepoleRake::Option.__send__(:stash)
-
-      RidgepoleRake::Option.instance_variable_set(:@stash, old_stash)
     end
   end
 
@@ -361,12 +346,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
 
     %w(0.6.0 0.6.1 0.6.2).each do |version|
       RidgepoleRake::Option.stub(:ridgepole_version, version) do
-        old_stash = RidgepoleRake::Option.__send__(:stash)
-        RidgepoleRake::Option.instance_variable_set(:@stash, nil)
-
         assert_equal exp_hash, RidgepoleRake::Option.__send__(:stash)
-
-        RidgepoleRake::Option.instance_variable_set(:@stash, old_stash)
       end
     end
   end
@@ -445,12 +425,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
     }
 
     RidgepoleRake::Option.stub(:ridgepole_version, '0.6.3') do
-      old_stash = RidgepoleRake::Option.__send__(:stash)
-      RidgepoleRake::Option.instance_variable_set(:@stash, nil)
-
       assert_equal exp_hash, RidgepoleRake::Option.__send__(:stash)
-
-      RidgepoleRake::Option.instance_variable_set(:@stash, old_stash)
     end
   end
 end
