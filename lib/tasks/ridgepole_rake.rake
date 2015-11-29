@@ -34,7 +34,7 @@ namespace :ridgepole do
     RidgepoleRake::Tasks.export
   end
 
-  desc 'diff current db schema and current schema file'
+  desc '`ridgepole --diff` current db and schema file'
   task diff: :environment do
     RidgepoleRake::Tasks.diff
   end
