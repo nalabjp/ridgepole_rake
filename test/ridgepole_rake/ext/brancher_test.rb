@@ -24,14 +24,12 @@ if defined?(::Brancher)
       config.ridgepole[:config] = 'test/fixtures/database_config.yml'
 
       branch_name = 'use_brancher'
-      renamed_yaml = <<-EOYAML
----
-user: custom_user
-password: custom_password
-database: custom_#{branch_name}
-original_database: custom
-      EOYAML
-      renamed_yaml.chomp!
+      renamed_yaml = {
+        'user' => 'custom_user',
+        'password' => 'custom_password',
+        'database' => "custom_#{branch_name}",
+        'original_database' => 'custom'
+      }.to_yaml.chomp!
 
       exp = "bundle exec ridgepole --apply --file db/schemas/Schemafile --env custom_environment --config #{renamed_yaml}"
 
