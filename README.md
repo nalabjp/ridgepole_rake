@@ -5,15 +5,42 @@
 [![Test Coverage](https://codeclimate.com/github/nalabjp/ridgepole_rake/badges/coverage.svg)](https://codeclimate.com/github/nalabjp/ridgepole_rake/coverage)
 [![Dependency Status](https://gemnasium.com/nalabjp/ridgepole_rake.svg)](https://gemnasium.com/nalabjp/ridgepole_rake)
 
-`RidgepoleRake` provides basic Rake Task for `Ridgepole`.
+RidgepoleRake provides basic Rake Task for [Ridgepole](https://github.com/winebarrel/ridgepole).
+
+RidgepoleRake supports the version 0.5.0 or later of Ridgepole.
 
 ## Installation
 
-    $ gem install ridgepole_rake
+Add to your Gemfile:
+
+```ruby
+gem 'ridgepole_rake'
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+Add to your Rakefile:
+
+```ruby
+load 'tasks/ridgepole_rake.rake'
+```
+
+If you are using Rails, it has tasks are loaded automatically.
+
+## Tasks
+
+    $ bundle exec rake -T
+    rake ridgepole:apply                # `ridgepole --apply`
+    rake ridgepole:apply:dry-run        # `ridgepole --apply --dry-run`
+    rake ridgepole:diff                 # `ridgepole --diff` current db and schema file
+    rake ridgepole:export               # `ridgepole --export`
+    rake ridgepole:merge[file]          # `ridgepole --merge`
+    rake ridgepole:merge:dry-run[file]  # `ridgepole --merge --dry-run`
+    rake ridgepole:reset                # `rake db:drop`, `rake db:create` and `ridgepole --apply`
+
+### apply
+
+    $ bundle exec ridgepole:apply 
 
 ## License
 
