@@ -47,14 +47,14 @@ Default configuration
 ```ruby
 # default configuration
 RidgepoleRake.config.ridgepole
-# => {"config"=>"config/database.yml", "file"=>"db/schemas/Schemafile", "output"=>"db/schemas.dump/Schemafile", "env"=>"development"} 
+# => {"config"=>"config/database.yml", "file"=>"db/schemas/Schemafile", "output"=>"db/schemas.dump/Schemafile", "env"=>"development"}
 ```
 
 Set by Symbol key
 ```ruby
 # Symbol key
 RidgepoleRake.config.ridgepole[:env] = 'staging'
-# => {"config"=>"config/database.yml", "file"=>"db/schemas/Schemafile", "output"=>"db/schemas.dump/Schemafile", "env"=>"staging"} 
+# => {"config"=>"config/database.yml", "file"=>"db/schemas/Schemafile", "output"=>"db/schemas.dump/Schemafile", "env"=>"staging"}
 
 RidgepoleRake.config.ridgepole[:env]
 # => 'staging'
@@ -64,7 +64,7 @@ Set by String key
 ```ruby
 # String key
 RidgepoleRake.config.ridgepole['env'] = 'production'
-# => {"config"=>"config/database.yml", "file"=>"db/schemas/Schemafile", "output"=>"db/schemas.dump/Schemafile", "env"=>"production"} 
+# => {"config"=>"config/database.yml", "file"=>"db/schemas/Schemafile", "output"=>"db/schemas.dump/Schemafile", "env"=>"production"}
 
 RidgepoleRake.config.ridgepole['env']
 # => 'production'
