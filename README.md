@@ -39,17 +39,18 @@ If you are using Rails, it has tasks are loaded automatically.
     rake ridgepole:merge:dry-run[file]  # `ridgepole --merge --dry-run`
     rake ridgepole:reset                # `rake db:drop`, `rake db:create` and `ridgepole --apply`
 
-### Configuration
+## Configuration
 
-RidgepoleRake is able to configure options of Ridgepole.
+RidgepoleRake can configure options of Ridgepole.
 
-Default configuration
+### Default configuration
 ```ruby
 # default configuration
 RidgepoleRake.config.ridgepole
 # => {"config"=>"config/database.yml", "file"=>"db/schemas/Schemafile", "output"=>"db/schemas.dump/Schemafile", "env"=>"development"}
 ```
 
+### Example
 Set by Symbol key
 ```ruby
 # Symbol key
@@ -70,6 +71,15 @@ RidgepoleRake.config.ridgepole['env']
 # => 'production'
 ```
 
+Convert to `ActiveSupport::HashWithIndifferentAccess`
+```ruby
+RidgepoleRake.config.ridgepole = { env: 'test' }
+RidgepoleRake.config.ridgepole.class
+# => ActiveSupport::HashWithIndifferentAccess
+```
+
+### Configurable options
+see also https://github.com/winebarrel/ridgepole#help
 
 ## License
 
