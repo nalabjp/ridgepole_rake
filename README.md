@@ -22,6 +22,7 @@ gem 'ridgepole_rake'
 Add to your Rakefile:
 
 ```ruby
+require 'ridgepole_rake'
 load 'tasks/ridgepole_rake.rake'
 ```
 
@@ -38,9 +39,37 @@ If you are using Rails, it has tasks are loaded automatically.
     rake ridgepole:merge:dry-run[file]  # `ridgepole --merge --dry-run`
     rake ridgepole:reset                # `rake db:drop`, `rake db:create` and `ridgepole --apply`
 
-### apply
+### Configuration
 
-    $ bundle exec ridgepole:apply 
+RidgepoleRake is able to configure options of Ridgepole.
+
+Default configuration
+```ruby
+# default configuration
+RidgepoleRake.config.ridgepole
+# => {"config"=>"config/database.yml", "file"=>"db/schemas/Schemafile", "output"=>"db/schemas.dump/Schemafile", "env"=>"development"} 
+```
+
+Set by Symbol key
+```ruby
+# Symbol key
+RidgepoleRake.config.ridgepole[:env] = 'staging'
+# => {"config"=>"config/database.yml", "file"=>"db/schemas/Schemafile", "output"=>"db/schemas.dump/Schemafile", "env"=>"staging"} 
+
+RidgepoleRake.config.ridgepole[:env]
+# => 'staging'
+```
+
+Set by String key
+```ruby
+# String key
+RidgepoleRake.config.ridgepole['env'] = 'production'
+# => {"config"=>"config/database.yml", "file"=>"db/schemas/Schemafile", "output"=>"db/schemas.dump/Schemafile", "env"=>"production"} 
+
+RidgepoleRake.config.ridgepole['env']
+# => 'production'
+```
+
 
 ## License
 
