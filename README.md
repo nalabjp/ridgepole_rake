@@ -51,7 +51,7 @@ RidgepoleRake.config.ridgepole
 ```
 
 ### Example
-Set by Symbol key
+Set by Symbol key.
 ```ruby
 # Symbol key
 RidgepoleRake.config.ridgepole[:env] = 'staging'
@@ -61,7 +61,7 @@ RidgepoleRake.config.ridgepole[:env]
 # => 'staging'
 ```
 
-Set by String key
+Set by String key.
 ```ruby
 # String key
 RidgepoleRake.config.ridgepole['env'] = 'production'
@@ -71,7 +71,7 @@ RidgepoleRake.config.ridgepole['env']
 # => 'production'
 ```
 
-Convert to `ActiveSupport::HashWithIndifferentAccess`
+Convert to `ActiveSupport::HashWithIndifferentAccess`.
 ```ruby
 RidgepoleRake.config.ridgepole = { env: 'test' }
 RidgepoleRake.config.ridgepole.class
@@ -80,6 +80,44 @@ RidgepoleRake.config.ridgepole.class
 
 ### Configurable options
 see also https://github.com/winebarrel/ridgepole#help
+
+## Rails
+
+If you are using Rails, `:env`'s default value is `Rails.env`.
+```ruby
+Rails.env
+# => production
+
+RidgepoleRake.config.ridgepole[:env]
+# => 'production'
+```
+
+## Brancher
+
+RidgepoleRake supports [Brancher](https://github.com/naoty/brancher).
+
+Supported version is 0.3.0 or later.
+
+Add to your Gemfile:
+```ruby
+gem 'brancher', '>= 0.3.0'
+```
+
+```ruby
+RidgepoleRake.config.brancher[:use]
+# => true
+```
+
+## Bundler
+
+RidgepoleRake supports Bundler.
+
+```ruby
+RidgepoleRake.config.bundler
+# => {"use"=>true, "clean_system"=>true}
+```
+
+If `RidgepoleRake.config.bundler[:use] == true` and `RidgepoleRake.config.bundler[:clean_system] == true`, Ridgepole will be performed using `Bundler.clean_system`.
 
 ## License
 
