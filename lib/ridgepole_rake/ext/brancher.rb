@@ -4,13 +4,17 @@ module RidgepoleRake
   module Brancher
     module Configuration
       def self.prepended(klass)
-        klass.class_eval { attr_accessor :brancher }
+        klass.class_eval { attr_reader :brancher }
       end
 
       # @note override
       def initialize
         super
         @brancher = { use: true }.with_indifferent_access
+      end
+
+      def brancher=(hash)
+        @brancher = hash.with_indifferent_access
       end
     end
 

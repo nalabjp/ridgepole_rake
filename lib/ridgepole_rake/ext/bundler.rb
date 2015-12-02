@@ -2,13 +2,17 @@ module RidgepoleRake
   module Bundler
     module Configuration
       def self.prepended(klass)
-        klass.class_eval { attr_accessor :bundler }
+        klass.class_eval { attr_reader :bundler }
       end
 
       # @note override
       def initialize
         super
         @bundler = { use: true, clean_system: true }.with_indifferent_access
+      end
+
+      def bundler=(hash)
+        @bundler = hash.with_indifferent_access
       end
     end
 

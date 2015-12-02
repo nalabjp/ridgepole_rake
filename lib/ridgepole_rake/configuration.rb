@@ -1,9 +1,13 @@
 module RidgepoleRake
   class Configuration
-    attr_accessor :ridgepole
+    attr_reader :ridgepole
 
     def initialize
       @ridgepole = default_ridgepole_options.with_indifferent_access
+    end
+
+    def ridgepole=(hash)
+      @ridgepole = hash.with_indifferent_access
     end
 
     private
