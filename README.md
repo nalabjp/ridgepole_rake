@@ -43,6 +43,9 @@ If you are using Rails, it has tasks are loaded automatically.
 
 RidgepoleRake can configure options of Ridgepole.
 
+### Configurable options
+see also https://github.com/winebarrel/ridgepole#help
+
 ### Default configuration
 ```ruby
 # default configuration
@@ -78,8 +81,19 @@ RidgepoleRake.config.ridgepole.class
 # => ActiveSupport::HashWithIndifferentAccess
 ```
 
-### Configurable options
-see also https://github.com/winebarrel/ridgepole#help
+Use `.configure` block
+```ruby
+RidgepoleRake.configure do |config|
+  config.ridgepole[:config]                = 'database_config.yml'
+  config.ridgepole[:file]                  = 'Schemafile'
+  config.ridgepole[:env]                   = 'production'
+  config.ridgepole[:log_file]              = 'log/ridgepole.log'
+  config.ridgepole['enable-mysql-awesome'] = true # It allows all the values, if the key does not have value.
+end
+```
+
+### Custom configuration with Task
+
 
 ## Rails
 
