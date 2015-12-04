@@ -30,7 +30,7 @@ If you are using Rails, it has tasks are loaded automatically.
 
 ## Tasks
 
-    $ bundle exec rake -T
+    $ rake -T
     rake ridgepole:apply                # `ridgepole --apply`
     rake ridgepole:apply:dry-run        # `ridgepole --apply --dry-run`
     rake ridgepole:diff                 # `ridgepole --diff` current db and schema file
