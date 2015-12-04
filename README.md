@@ -93,7 +93,35 @@ end
 ```
 
 ### Custom configuration with Task
+```ruby
+task :my_config do
+  RidgepoleRake.configure do |config|
+    config.ridgepole[:config]                = 'database_config.yml'
+    config.ridgepole[:file]                  = 'Schemafile'
+    config.ridgepole[:env]                   = 'production'
+    config.ridgepole[:log_file]              = 'log/ridgepole.log'
+    config.ridgepole['enable-mysql-awesome'] = true
+  end
+end
 
+task 'ridgepole:apply:dry-run' => ['my_config']
+```
+
+or
+
+```ruby
+task :my_ridgepole_apply_dryrun do
+  RidgepoleRake.configure do |config|
+    config.ridgepole[:config]                = 'database_config.yml'
+    config.ridgepole[:file]                  = 'Schemafile'
+    config.ridgepole[:env]                   = 'production'
+    config.ridgepole[:log_file]              = 'log/ridgepole.log'
+    config.ridgepole['enable-mysql-awesome'] = true
+  end
+
+  Rake::Task['ridgepole:apply:dry-run'].invoke
+end
+```
 
 ## Rails
 
