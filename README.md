@@ -1,5 +1,6 @@
 # RidgepoleRake
 
+[![Gem Version](https://badge.fury.io/rb/ridgepole_rake.svg)](https://badge.fury.io/rb/ridgepole_rake)
 [![Build Status](https://travis-ci.org/nalabjp/ridgepole_rake.svg?branch=master)](https://travis-ci.org/nalabjp/ridgepole_rake)
 [![Code Climate](https://codeclimate.com/github/nalabjp/ridgepole_rake/badges/gpa.svg)](https://codeclimate.com/github/nalabjp/ridgepole_rake)
 [![Test Coverage](https://codeclimate.com/github/nalabjp/ridgepole_rake/badges/coverage.svg)](https://codeclimate.com/github/nalabjp/ridgepole_rake/coverage)
