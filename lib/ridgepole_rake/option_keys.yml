@@ -17,14 +17,14 @@
     - d
     - output
     - o
+    - split
+    - split-with-dir
   recognized_keys:
     - table-options
     - bulk-change
     - default-int-limit
     - pre-query
     - post-query
-    - split
-    - split-with-dir
     - reverse
     - with-apply
     - tables
@@ -40,8 +40,6 @@
     - v
   non_value_keys:
     - bulk-change
-    - split
-    - split-with-dir
     - reverse
     - with-apply
     - enable-mysql-unsigned
@@ -62,8 +60,6 @@
     - default-int-limit
     - pre-query
     - post-query
-    - split
-    - split-with-dir
     - reverse
     - with-apply
     - tables
@@ -81,8 +77,6 @@
     - v
   non_value_keys:
     - bulk-change
-    - split
-    - split-with-dir
     - reverse
     - with-apply
     - enable-mysql-unsigned
@@ -103,8 +97,6 @@
     - default-int-limit
     - pre-query
     - post-query
-    - split
-    - split-with-dir
     - reverse
     - with-apply
     - tables
@@ -127,8 +119,6 @@
     - v
   non_value_keys:
     - bulk-change
-    - split
-    - split-with-dir
     - reverse
     - with-apply
     - enable-mysql-unsigned
@@ -160,8 +150,6 @@
     - default-binary-limit
     - pre-query
     - post-query
-    - split
-    - split-with-dir
     - reverse
     - with-apply
     - tables
@@ -179,8 +167,6 @@
     - v
   non_value_keys: &060_non_value_keys
     - bulk-change
-    - split
-    - split-with-dir
     - reverse
     - with-apply
     - enable-mysql-awesome
@@ -214,8 +200,6 @@
     - default-binary-limit
     - pre-query
     - post-query
-    - split
-    - split-with-dir
     - reverse
     - with-apply
     - tables
@@ -234,8 +218,6 @@
     - v
   non_value_keys:
     - bulk-change
-    - split
-    - split-with-dir
     - reverse
     - with-apply
     - enable-mysql-awesome
