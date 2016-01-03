@@ -72,6 +72,8 @@ class RidgepoleRake::OptionTest < Minitest::Test
         d
         output
         o
+        split
+        split-with-dir
       ),
       'recognized_keys' => %w(
         table-options
@@ -79,8 +81,6 @@ class RidgepoleRake::OptionTest < Minitest::Test
         default-int-limit
         pre-query
         post-query
-        split
-        split-with-dir
         reverse
         with-apply
         tables
@@ -97,8 +97,6 @@ class RidgepoleRake::OptionTest < Minitest::Test
       ),
       'non_value_keys' => %w(
         bulk-change
-        split
-        split-with-dir
         reverse
         with-apply
         enable-mysql-unsigned
@@ -140,6 +138,8 @@ class RidgepoleRake::OptionTest < Minitest::Test
         d
         output
         o
+        split
+        split-with-dir
       ),
       'recognized_keys' => %w(
         table-options
@@ -147,8 +147,6 @@ class RidgepoleRake::OptionTest < Minitest::Test
         default-int-limit
         pre-query
         post-query
-        split
-        split-with-dir
         reverse
         with-apply
         tables
@@ -167,8 +165,6 @@ class RidgepoleRake::OptionTest < Minitest::Test
       ),
       'non_value_keys' => %w(
         bulk-change
-        split
-        split-with-dir
         reverse
         with-apply
         enable-mysql-unsigned
@@ -212,6 +208,8 @@ class RidgepoleRake::OptionTest < Minitest::Test
         d
         output
         o
+        split
+        split-with-dir
       ),
       'recognized_keys' => %w(
         table-options
@@ -219,8 +217,6 @@ class RidgepoleRake::OptionTest < Minitest::Test
         default-int-limit
         pre-query
         post-query
-        split
-        split-with-dir
         reverse
         with-apply
         tables
@@ -244,8 +240,6 @@ class RidgepoleRake::OptionTest < Minitest::Test
       ),
       'non_value_keys' => %w(
         bulk-change
-        split
-        split-with-dir
         reverse
         with-apply
         enable-mysql-unsigned
@@ -293,6 +287,8 @@ class RidgepoleRake::OptionTest < Minitest::Test
         d
         output
         o
+        split
+        split-with-dir
       ),
       'recognized_keys' => %w(
         table-options
@@ -305,8 +301,6 @@ class RidgepoleRake::OptionTest < Minitest::Test
         default-binary-limit
         pre-query
         post-query
-        split
-        split-with-dir
         reverse
         with-apply
         tables
@@ -325,8 +319,6 @@ class RidgepoleRake::OptionTest < Minitest::Test
       ),
       'non_value_keys' => %w(
         bulk-change
-        split
-        split-with-dir
         reverse
         with-apply
         enable-mysql-awesome
@@ -371,6 +363,8 @@ class RidgepoleRake::OptionTest < Minitest::Test
         d
         output
         o
+        split
+        split-with-dir
       ),
       'recognized_keys' => %w(
         table-options
@@ -383,8 +377,6 @@ class RidgepoleRake::OptionTest < Minitest::Test
         default-binary-limit
         pre-query
         post-query
-        split
-        split-with-dir
         reverse
         with-apply
         tables
@@ -404,8 +396,6 @@ class RidgepoleRake::OptionTest < Minitest::Test
       ),
       'non_value_keys' => %w(
         bulk-change
-        split
-        split-with-dir
         reverse
         with-apply
         enable-mysql-awesome

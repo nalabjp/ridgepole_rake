@@ -40,6 +40,24 @@ class RidgepoleRake::CommandTest < Minitest::Test
     assert_equal exp, RidgepoleRake::Command.new(action, config).command
   end
 
+  def test_command_with_export_action_and_split_option
+    action = :export
+    config = RidgepoleRake.config
+    config.ridgepole[:split] = true
+    exp = 'bundle exec ridgepole --export --output db/schemas.dump/Schemafile --split --env test --config config/database.yml'
+
+    assert_equal exp, RidgepoleRake::Command.new(action, config).command
+  end
+
+  def test_command_with_export_action_and_split_with_dir_option
+    action = :export
+    config = RidgepoleRake.config
+    config.ridgepole['split-with-dir'] = true
+    exp = 'bundle exec ridgepole --export --output db/schemas.dump/Schemafile --split-with-dir --env test --config config/database.yml'
+
+    assert_equal exp, RidgepoleRake::Command.new(action, config).command
+  end
+
   def test_command_with_diff_action
     action = :diff
     config = RidgepoleRake.config
@@ -115,8 +133,6 @@ class RidgepoleRake::CommandTest < Minitest::Test
       'default-binary-limit'       => 6,
       'pre-query'                  => '"any query1"',
       'post-query'                 => '"any query2"',
-      'split'                      => nil,
-      'split-with-dir'             => '',
       'reverse'                    => true,
       'with-apply'                 => true,
       'tables'                     => 'table1',
@@ -134,7 +150,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
       'version'                    => true,
       'v'                          => true
     }) # Ridgepole v0.6.3 only
-    exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --env test --config config/database.yml --table-options ENGINE=INNODB --bulk-change --default-bool-limit 1 --default-int-limit 2 --default-float-limit 3 --default-string-limit 4 --default-text-limit 5 --default-binary-limit 6 --pre-query "any query1" --post-query "any query2" --split --split-with-dir --reverse --with-apply --tables table1 -t table1 --ignore-tables table2 --enable-mysql-awesome --dump-without-table-options --index-removed-drop-column --enable-migration-comments --require requires.rb -r requires.rb --log-file log-file.log --verbose --debug --version -v'
+    exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --env test --config config/database.yml --table-options ENGINE=INNODB --bulk-change --default-bool-limit 1 --default-int-limit 2 --default-float-limit 3 --default-string-limit 4 --default-text-limit 5 --default-binary-limit 6 --pre-query "any query1" --post-query "any query2" --reverse --with-apply --tables table1 -t table1 --ignore-tables table2 --enable-mysql-awesome --dump-without-table-options --index-removed-drop-column --enable-migration-comments --require requires.rb -r requires.rb --log-file log-file.log --verbose --debug --version -v'
 
     assert_equal exp, RidgepoleRake::Command.new(action, config).command
   end

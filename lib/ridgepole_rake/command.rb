@@ -63,6 +63,8 @@ module RidgepoleRake
     def add_export_action
       stash.push('--export')
       stash.push('--output', config.ridgepole.fetch(:output))
+      stash.push('--split') if config.ridgepole.has_key?(:split)
+      stash.push('--split-with-dir') if config.ridgepole.has_key?('split-with-dir')
     end
 
     def add_diff_action
