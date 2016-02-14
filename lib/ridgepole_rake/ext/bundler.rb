@@ -20,7 +20,7 @@ module RidgepoleRake
       # @note override
       def execute
         if config.bundler[:use] && config.bundler[:clean_system]
-          ::Bundler.clean_system(command)
+          ::Bundler.clean_system(stash)
         else
           super
         end
@@ -31,7 +31,7 @@ module RidgepoleRake
       # @note override
       def add_ridgepole
         super
-        stash.unshift('bundle exec') if config.bundler[:use]
+        stash.unshift(*%w(bundle exec)) if config.bundler[:use]
       end
     end
   end

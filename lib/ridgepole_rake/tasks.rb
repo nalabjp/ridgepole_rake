@@ -23,7 +23,7 @@ module RidgepoleRake
         cmd = Command.new(action, RidgepoleRake.config, options)
         cmd.execute
 
-        result(cmd.command)
+        result(cmd.inspect)
       end
 
       def result(command)
