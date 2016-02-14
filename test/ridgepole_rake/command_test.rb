@@ -10,10 +10,11 @@ class RidgepoleRake::CommandTest < Minitest::Test
     config = RidgepoleRake.config
     config.bundler[:use] = false
     config.bundler[:clean_system] = false
-    executed_cmd = ''
+    expected_cmds = %w(ridgepole --apply --file db/schemas/Schemafile --env test --config config/database.yml)
+    actual_cmds = []
     mock = Minitest::Mock.new
-    mock.expect(:call, nil) do |command|
-      executed_cmd = command
+    mock.expect(:call, nil) do |commands|
+      actual_cmds = commands
     end
 
     Kernel.stub(:system, mock) do
@@ -21,7 +22,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
     end
 
     mock.verify
-    assert_equal false, executed_cmd.empty?
+    assert_equal expected_cmds, actual_cmds
   end
 
   def test_command_with_apply_action
@@ -29,7 +30,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
     config = RidgepoleRake.config
     exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --env test --config config/database.yml'
 
-    assert_equal exp, RidgepoleRake::Command.new(action, config).command
+    assert_equal exp, RidgepoleRake::Command.new(action, config).inspect
   end
 
   def test_command_with_export_action
@@ -37,7 +38,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
     config = RidgepoleRake.config
     exp = 'bundle exec ridgepole --export --output db/schemas.dump/Schemafile --env test --config config/database.yml'
 
-    assert_equal exp, RidgepoleRake::Command.new(action, config).command
+    assert_equal exp, RidgepoleRake::Command.new(action, config).inspect
   end
 
   def test_command_with_export_action_and_split_option
@@ -46,7 +47,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
     config.ridgepole[:split] = true
     exp = 'bundle exec ridgepole --export --output db/schemas.dump/Schemafile --split --env test --config config/database.yml'
 
-    assert_equal exp, RidgepoleRake::Command.new(action, config).command
+    assert_equal exp, RidgepoleRake::Command.new(action, config).inspect
   end
 
   def test_command_with_export_action_and_split_with_dir_option
@@ -55,7 +56,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
     config.ridgepole['split-with-dir'] = true
     exp = 'bundle exec ridgepole --export --output db/schemas.dump/Schemafile --split-with-dir --env test --config config/database.yml'
 
-    assert_equal exp, RidgepoleRake::Command.new(action, config).command
+    assert_equal exp, RidgepoleRake::Command.new(action, config).inspect
   end
 
   def test_command_with_diff_action
@@ -63,7 +64,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
     config = RidgepoleRake.config
     exp = 'bundle exec ridgepole --diff config/database.yml db/schemas/Schemafile --env test --config config/database.yml'
 
-    assert_equal exp, RidgepoleRake::Command.new(action, config).command
+    assert_equal exp, RidgepoleRake::Command.new(action, config).inspect
   end
 
   def test_command_with_merge_action
@@ -72,14 +73,14 @@ class RidgepoleRake::CommandTest < Minitest::Test
     options = { merge_file: 'patch_file.rb' }
     exp = 'bundle exec ridgepole --merge --file patch_file.rb --env test --config config/database.yml'
 
-    assert_equal exp, RidgepoleRake::Command.new(action, config, options).command
+    assert_equal exp, RidgepoleRake::Command.new(action, config, options).inspect
   end
 
   def test_command_with_invalid_action
     action = :invalid
 
     assert_raises(RidgepoleRake::UndefinedActionError) do
-      RidgepoleRake::Command.new(action, RidgepoleRake.config).command
+      RidgepoleRake::Command.new(action, RidgepoleRake.config).inspect
     end
   end
 
@@ -89,7 +90,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
     options = { dry_run: true }
     exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --dry-run --env test --config config/database.yml'
 
-    assert_equal exp, RidgepoleRake::Command.new(action, config, options).command
+    assert_equal exp, RidgepoleRake::Command.new(action, config, options).inspect
   end
 
   def test_command_with_env_option
@@ -98,7 +99,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
     config.ridgepole[:env] = 'staging'
     exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --env staging --config config/database.yml'
 
-    assert_equal exp, RidgepoleRake::Command.new(action, config).command
+    assert_equal exp, RidgepoleRake::Command.new(action, config).inspect
   end
 
   def test_commnad_with_db_config_option
@@ -107,7 +108,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
     config.ridgepole[:config] = 'config/custom_database.yml'
     exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --env test --config config/custom_database.yml'
 
-    assert_equal exp, RidgepoleRake::Command.new(action, config).command
+    assert_equal exp, RidgepoleRake::Command.new(action, config).inspect
   end
 
   def test_command_without_bundler
@@ -116,7 +117,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
     config.bundler[:use] = false
     exp = 'ridgepole --apply --file db/schemas/Schemafile --env test --config config/database.yml'
 
-    assert_equal exp, RidgepoleRake::Command.new(action, config).command
+    assert_equal exp, RidgepoleRake::Command.new(action, config).inspect
   end
 
   def test_command_with_extras
@@ -152,6 +153,6 @@ class RidgepoleRake::CommandTest < Minitest::Test
     }) # Ridgepole v0.6.3 only
     exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --env test --config config/database.yml --table-options ENGINE=INNODB --bulk-change --default-bool-limit 1 --default-int-limit 2 --default-float-limit 3 --default-string-limit 4 --default-text-limit 5 --default-binary-limit 6 --pre-query "any query1" --post-query "any query2" --reverse --with-apply --tables table1 -t table1 --ignore-tables table2 --enable-mysql-awesome --dump-without-table-options --index-removed-drop-column --enable-migration-comments --require requires.rb -r requires.rb --log-file log-file.log --verbose --debug --version -v'
 
-    assert_equal exp, RidgepoleRake::Command.new(action, config).command
+    assert_equal exp, RidgepoleRake::Command.new(action, config).inspect
   end
 end

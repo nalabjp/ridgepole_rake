@@ -34,7 +34,7 @@ if defined?(::Brancher)
       exp = "bundle exec ridgepole --apply --file db/schemas/Schemafile --env custom_environment --config #{renamed_yaml}"
 
       Brancher::DatabaseRenameService.stub(:suffix, "_#{branch_name}") do
-        assert_equal exp, RidgepoleRake::Command.new(action, config).command
+        assert_equal exp, RidgepoleRake::Command.new(action, config).inspect
       end
     end
   end

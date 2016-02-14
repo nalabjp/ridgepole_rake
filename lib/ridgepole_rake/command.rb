@@ -1,32 +1,32 @@
 module RidgepoleRake
   class Command
 
-    attr_reader :stash, :action, :config, :options
-
     def initialize(action, config, options = {})
       @stash   = []
       @action  = action
       @config  = config
       @options = options
+
+      build
     end
 
     def execute
-      Kernel.system(command)
+      Kernel.system(stash)
     end
 
+    # @deprecated Use {#inspect} instead
     def command
-      @command ||= begin
-                     clear
-                     build
-                     join
-                   end
+      Kernel.warn '[DEPRECATION] `RidgepoleRake::Command#command` is deprecated and will be removed'
+      inspect
+    end
+
+    def inspect
+      stash.join(' ').strip
     end
 
     private
 
-    def clear
-      stash.clear
-    end
+    attr_reader :stash, :action, :config, :options
 
     def build
       add_action
@@ -35,10 +35,6 @@ module RidgepoleRake
       add_config
       add_extras
       add_ridgepole
-    end
-
-    def join
-      stash.join(' ').strip
     end
 
     def add_action
