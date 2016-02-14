@@ -9,7 +9,6 @@ gemfile:
   - Gemfile
   - Gemfile-rails
   - Gemfile-minimum
-before_install: gem install bundler -v 1.10.6
 addons:
   code_climate:
     repo_token: f1d3de8fd8a6342cd1a107dd7619a218e433a338b4138a4dc3d0fb4a27060086
