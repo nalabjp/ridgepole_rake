@@ -2,17 +2,13 @@ language: ruby
 cache: bundler
 bundler_args: "--without production"
 rvm:
-- 2.1.6
-- 2.2.0
-- 2.2.1
-- 2.2.2
-- 2.2.3
-- 2.2.4
-- 2.3.0
+  - 2.1
+  - 2.2
+  - 2.3
 gemfile:
-- Gemfile
-- Gemfile-rails
-- Gemfile-minimum
+  - Gemfile
+  - Gemfile-rails
+  - Gemfile-minimum
 before_install: gem install bundler -v 1.10.6
 addons:
   code_climate:
