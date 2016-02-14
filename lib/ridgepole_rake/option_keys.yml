@@ -229,3 +229,49 @@
     - version
     - v
   single_char_keys: *052_single_char_keys
+0.6.4:
+  ignored_keys: *050_ignored_keys
+  recognized_keys:
+    - table-options
+    - alter-extra
+    - external-script
+    - bulk-change
+    - default-bool-limit
+    - default-int-limit
+    - default-float-limit
+    - default-string-limit
+    - default-text-limit
+    - default-binary-limit
+    - pre-query
+    - post-query
+    - reverse
+    - with-apply
+    - tables
+    - t
+    - ignore-tables
+    - enable-mysql-awesome
+    - mysql-use-alter
+    - dump-without-table-options
+    - dump-with-default-fk-name
+    - index-removed-drop-column
+    - require
+    - r
+    - log-file
+    - verbose
+    - debug
+    - version
+    - v
+  non_value_keys:
+    - bulk-change
+    - reverse
+    - with-apply
+    - enable-mysql-awesome
+    - mysql-use-alter
+    - dump-without-table-options
+    - dump-with-default-fk-name
+    - index-removed-drop-column
+    - verbose
+    - debug
+    - version
+    - v
+  single_char_keys: *052_single_char_keys
