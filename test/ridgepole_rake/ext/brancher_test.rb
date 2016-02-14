@@ -6,12 +6,11 @@ if defined?(::Brancher)
       RidgepoleRake.reset
     end
 
-    def test_use_brancher
+
+    def test_brancher
       assert RidgepoleRake.config.brancher[:use]
 
-      RidgepoleRake.configure do |config|
-        config.brancher[:use] = false
-      end
+      RidgepoleRake.config.brancher = { use: false }
 
       assert_equal false, RidgepoleRake.config.brancher[:use]
     end
