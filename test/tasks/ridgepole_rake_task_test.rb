@@ -63,7 +63,7 @@ class RidgepoleRakeTaskTest < Minitest::Test
       ActiveRecord::Tasks::DatabaseTasks.stub(:drop_current, nil) do
         ActiveRecord::Tasks::DatabaseTasks.stub(:create_current, nil) do
           RidgepoleRake::Tasks.stub(:apply, @mock) do
-            Rake::Task['ridgepole:apply'].invoke
+            Rake::Task['ridgepole:reset'].invoke
           end
         end
       end

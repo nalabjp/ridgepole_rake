@@ -16,7 +16,7 @@ if defined?(::Brancher)
       assert_equal false, RidgepoleRake.config.brancher[:use]
     end
 
-    def test_commnad_with_db_config_option_and_use_brancher
+    def test_inspect_with_db_config_option_and_use_brancher
       action = :apply
       config = RidgepoleRake.config
       config.brancher[:use] = true

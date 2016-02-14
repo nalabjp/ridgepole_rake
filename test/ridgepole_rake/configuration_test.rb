@@ -5,67 +5,46 @@ class RidgepoleRake::ConfigurationTest < Minitest::Test
     RidgepoleRake.reset
   end
 
-  def test_config
+  def test_ridgepole
     assert_equal 'config/database.yml', RidgepoleRake.config.ridgepole[:config]
-
-    RidgepoleRake.configure do |config|
-      config.ridgepole[:config] = 'new_db_config'
-    end
-
-    assert_equal 'new_db_config', RidgepoleRake.config.ridgepole[:config]
-  end
-
-  def test_file
     assert_equal 'db/schemas/Schemafile', RidgepoleRake.config.ridgepole[:file]
-
-    RidgepoleRake.configure do |config|
-      config.ridgepole[:file] = 'new_schema_dir/new_schema_file'
-    end
-
-    assert_equal 'new_schema_dir/new_schema_file', RidgepoleRake.config.ridgepole[:file]
-  end
-
-  def test_output
     assert_equal 'db/schemas.dump/Schemafile', RidgepoleRake.config.ridgepole[:output]
-
-    RidgepoleRake.configure do |config|
-      config.ridgepole[:output] = 'new_schema_dir.dump/new_schema_file'
-    end
-
-    assert_equal 'new_schema_dir.dump/new_schema_file', RidgepoleRake.config.ridgepole[:output]
-  end
-
-  def test_env
     if defined?(::Rails)
       assert_equal 'test', RidgepoleRake.config.ridgepole[:env]
     else
       assert_equal 'development', RidgepoleRake.config.ridgepole[:env]
     end
 
-    RidgepoleRake.configure do |config|
-      config.ridgepole[:env] = 'production'
-    end
+    RidgepoleRake.config.ridgepole = {
+      config: 'new_db_config',
+      file: 'new_schema_dir/new_schema_file',
+      output: 'new_schema_dir.dump/new_schema_file',
+      env: 'production'
+    }
 
+    assert_equal 'new_db_config', RidgepoleRake.config.ridgepole[:config]
+    assert_equal 'new_schema_dir/new_schema_file', RidgepoleRake.config.ridgepole[:file]
+    assert_equal 'new_schema_dir.dump/new_schema_file', RidgepoleRake.config.ridgepole[:output]
     assert_equal 'production', RidgepoleRake.config.ridgepole[:env]
   end
 
-  def test_use_bundler
+  def test_bundler
     assert RidgepoleRake.config.bundler[:use]
-
-    RidgepoleRake.configure do |config|
-      config.bundler[:use] = false
-    end
-
-    assert_equal false, RidgepoleRake.config.bundler[:use]
-  end
-
-  def test_use_clean_system
     assert RidgepoleRake.config.bundler[:clean_system]
 
-    RidgepoleRake.configure do |config|
-      config.bundler[:clean_system] = false
-    end
+    RidgepoleRake.config.bundler = { use: false, clean_system: false }
 
+    assert_equal false, RidgepoleRake.config.bundler[:use]
     assert_equal false, RidgepoleRake.config.bundler[:clean_system]
+  end
+
+  if defined?(::Brancher)
+    def test_brancher
+      assert RidgepoleRake.config.brancher[:use]
+
+      RidgepoleRake.config.brancher = { use: false }
+
+      assert_equal false, RidgepoleRake.config.brancher[:use]
+    end
   end
 end
