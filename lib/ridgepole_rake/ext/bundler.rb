@@ -20,7 +20,7 @@ module RidgepoleRake
       # @note override
       def execute
         if config.bundler[:use] && config.bundler[:clean_system]
-          ::Bundler.clean_system(stash)
+          ::Bundler.clean_system(*stash)
         else
           super
         end

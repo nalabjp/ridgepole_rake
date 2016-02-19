@@ -11,7 +11,7 @@ module RidgepoleRake
     end
 
     def execute
-      Kernel.system(stash)
+      Kernel.system(*stash)
     end
 
     # @deprecated Use {#inspect} instead
