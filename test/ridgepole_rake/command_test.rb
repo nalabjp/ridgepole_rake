@@ -13,8 +13,8 @@ class RidgepoleRake::CommandTest < Minitest::Test
     expected_cmds = %w(ridgepole --apply --file db/schemas/Schemafile --env test --config config/database.yml)
     actual_cmds = []
     mock = Minitest::Mock.new
-    mock.expect(:call, nil) do |commands|
-      actual_cmds = commands
+    mock.expect(:call, nil) do |*commands|
+      actual_cmds.push(*commands)
     end
 
     Kernel.stub(:system, mock) do
