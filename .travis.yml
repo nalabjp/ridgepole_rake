@@ -1,6 +1,6 @@
+dist: trusty
+sudo: required
 language: ruby
-cache: bundler
-bundler_args: "--without production"
 rvm:
   - 2.1.8
   - 2.2.4
@@ -9,6 +9,8 @@ gemfile:
   - Gemfile
   - Gemfile-rails
   - Gemfile-minimum
+cache:
+  - bundler
 addons:
   code_climate:
     repo_token: f1d3de8fd8a6342cd1a107dd7619a218e433a338b4138a4dc3d0fb4a27060086
