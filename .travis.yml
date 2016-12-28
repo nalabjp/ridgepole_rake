@@ -11,6 +11,8 @@ gemfile:
 cache:
   - bundler
 before_install: gem install bundler
+after_success:
+  - bundle exec codeclimate-test-reporter
 addons:
   code_climate:
     repo_token: f1d3de8fd8a6342cd1a107dd7619a218e433a338b4138a4dc3d0fb4a27060086
