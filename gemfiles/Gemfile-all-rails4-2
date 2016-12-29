@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in ridgepole_rake.gemspec
 gemspec path: '../'
 
+gem 'ridgepole', github: 'winebarrel/ridgepole', branch: 'v0.6.5'
+
 group :test do
   gem 'minitest'
   gem 'minitest-reporters'

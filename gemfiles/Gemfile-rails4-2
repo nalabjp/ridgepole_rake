@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gemspec path: '../'
 
+gem 'ridgepole', github: 'winebarrel/ridgepole', branch: 'v0.6.5'
+
 group :test do
   gem 'minitest'
   gem 'minitest-reporters'
