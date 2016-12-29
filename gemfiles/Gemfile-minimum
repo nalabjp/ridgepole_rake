@@ -5,5 +5,4 @@ gemspec path: '../'
 group :test do
   gem 'minitest'
   gem 'minitest-reporters'
-  gem "codeclimate-test-reporter", require: false
 end
