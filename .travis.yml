@@ -14,8 +14,6 @@ matrix:
     - rvm: 2.3.3
       gemfile: gemfiles/Gemfile-all-rails5-0
     - rvm: 2.4.0
-      gemfile: gemfiles/Gemfile-minimum
-    - rvm: 2.4.0
       gemfile: gemfiles/Gemfile-rails5-0
     - rvm: 2.4.0
       gemfile: gemfiles/Gemfile-all-rails5-0
