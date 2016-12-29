@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Specify your gem's dependencies in ridgepole_rake.gemspec
-gemspec
+gemspec path: '../'
 
 group :development, :test do
   gem 'pry'
