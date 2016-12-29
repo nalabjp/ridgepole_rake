@@ -1,13 +1,24 @@
 dist: trusty
 sudo: required
 language: ruby
-rvm:
-  - 2.3.3
-  - 2.4.0
-gemfile:
-  - Gemfile
-  - Gemfile-rails
-  - Gemfile-minimum
+matrix:
+  include:
+    - rvm: 2.3.3
+      gemfile: gemfiles/Gemfile-minimum
+    - rvm: 2.3.3
+      gemfile: gemfiles/Gemfile-rails4-2
+    - rvm: 2.3.3
+      gemfile: gemfiles/Gemfile-rails5-0
+    - rvm: 2.3.3
+      gemfile: gemfiles/Gemfile-all-rails4-2
+    - rvm: 2.3.3
+      gemfile: gemfiles/Gemfile-all-rails5-0
+    - rvm: 2.4.0
+      gemfile: gemfiles/Gemfile-minimum
+    - rvm: 2.4.0
+      gemfile: gemfiles/Gemfile-rails5-0
+    - rvm: 2.4.0
+      gemfile: gemfiles/Gemfile-all-rails5-0
 cache:
   - bundler
 before_install: gem install bundler
