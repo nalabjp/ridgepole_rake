@@ -14,12 +14,6 @@ module RidgepoleRake
       Kernel.system(*stash)
     end
 
-    # @deprecated Use {#inspect} instead
-    def command
-      Kernel.warn '[DEPRECATION] `RidgepoleRake::Command#command` is deprecated and will be removed'
-      inspect
-    end
-
     def inspect
       stash.join(' ').strip
     end

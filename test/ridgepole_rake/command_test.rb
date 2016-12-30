@@ -25,14 +25,6 @@ class RidgepoleRake::CommandTest < Minitest::Test
     assert_equal expected_cmds, actual_cmds
   end
 
-  def test_command_via_inspect
-    action = :apply
-    config = RidgepoleRake.config
-    cmd = RidgepoleRake::Command.new(action, config)
-
-    assert_equal cmd.command, cmd.inspect
-  end
-
   def test_inspect_with_apply_action
     action = :apply
     config = RidgepoleRake.config
