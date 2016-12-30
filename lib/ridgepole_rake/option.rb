@@ -1,5 +1,18 @@
+require 'ridgepole_rake/option_keys'
+
 module RidgepoleRake
   module Option
+    SUPPORTED_VERSIONS = {
+      '0.5.0' => OptionKeys::V050,
+      '0.5.1' => OptionKeys::V051,
+      '0.5.2' => OptionKeys::V052,
+      '0.6.0' => OptionKeys::V060,
+      '0.6.1' => OptionKeys::V061,
+      '0.6.2' => OptionKeys::V062,
+      '0.6.3' => OptionKeys::V063,
+      '0.6.4' => OptionKeys::V064,
+    }.freeze
+
     class << self
       def non_value_key?(key)
         non_value_keys.include?(key.to_s)
@@ -17,19 +30,19 @@ module RidgepoleRake
       end
 
       def ignored_keys
-        stash.fetch('ignored_keys')
+        stash.fetch(:ignored_keys)
       end
 
       def recognized_keys
-        stash.fetch('recognized_keys')
+        stash.fetch(:recognized_keys)
       end
 
       def non_value_keys
-        stash.fetch('non_value_keys')
+        stash.fetch(:non_value_keys)
       end
 
       def single_char_keys
-        stash.fetch('single_char_keys')
+        stash.fetch(:single_char_keys)
       end
 
       def clear
@@ -39,11 +52,16 @@ module RidgepoleRake
       private
 
       def stash
-        @stash ||= YAML.load_file(yaml_path).fetch(ridgepole_version)
+        @stash ||= {
+          ignored_keys:     current_version_class::IGNORED_KEYS,
+          recognized_keys:  current_version_class::RECOGNIZED_KEYS,
+          non_value_keys:   current_version_class::NON_VALUE_KEYS,
+          single_char_keys: current_version_class::SINGLE_CHAR_KEYS
+        }
       end
 
-      def yaml_path
-        File.expand_path('option_keys.yml', File.dirname(__FILE__))
+      def current_version_class
+        SUPPORTED_VERSIONS.fetch(ridgepole_version)
       end
 
       def ridgepole_version

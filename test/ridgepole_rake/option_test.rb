@@ -29,32 +29,32 @@ class RidgepoleRake::OptionTest < Minitest::Test
   end
 
   def test_ignored_keys
-    RidgepoleRake::Option.stub(:stash, {'ignored_keys' => ['a', 'b']}) do
+    RidgepoleRake::Option.stub(:stash, {ignored_keys: ['a', 'b']}) do
       assert_equal ['a', 'b'], RidgepoleRake::Option.ignored_keys
     end
   end
 
   def test_recognized_keys
-    RidgepoleRake::Option.stub(:stash, {'recognized_keys' => ['c', 'd']}) do
+    RidgepoleRake::Option.stub(:stash, {recognized_keys: ['c', 'd']}) do
       assert_equal ['c', 'd'], RidgepoleRake::Option.recognized_keys
     end
   end
 
   def test_non_value_keys
-    RidgepoleRake::Option.stub(:stash, {'non_value_keys' => ['e', 'f']}) do
+    RidgepoleRake::Option.stub(:stash, {non_value_keys: ['e', 'f']}) do
       assert_equal ['e', 'f'], RidgepoleRake::Option.non_value_keys
     end
   end
 
   def test_single_char_keys
-    RidgepoleRake::Option.stub(:stash, {'single_char_keys' => ['g', 'h']}) do
+    RidgepoleRake::Option.stub(:stash, {single_char_keys: ['g', 'h']}) do
       assert_equal ['g', 'h'], RidgepoleRake::Option.single_char_keys
     end
   end
 
   def test_stash_in_version_0_5_0
     exp_hash = {
-      'ignored_keys' => %w(
+      ignored_keys: %w(
         config
         c
         env
@@ -75,7 +75,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         split
         split-with-dir
       ),
-      'recognized_keys' => %w(
+      recognized_keys: %w(
         table-options
         bulk-change
         default-int-limit
@@ -95,7 +95,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         version
         v
       ),
-      'non_value_keys' => %w(
+      non_value_keys: %w(
         bulk-change
         reverse
         with-apply
@@ -107,7 +107,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         version
         v
       ),
-      'single_char_keys' => %w(
+      single_char_keys: %w(
         t
         v
       )
@@ -120,7 +120,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
 
   def test_stash_in_version_0_5_1
     exp_hash = {
-      'ignored_keys' => %w(
+      ignored_keys: %w(
         config
         c
         env
@@ -141,7 +141,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         split
         split-with-dir
       ),
-      'recognized_keys' => %w(
+      recognized_keys: %w(
         table-options
         bulk-change
         default-int-limit
@@ -163,7 +163,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         version
         v
       ),
-      'non_value_keys' => %w(
+      non_value_keys: %w(
         bulk-change
         reverse
         with-apply
@@ -177,7 +177,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         version
         v
       ),
-      'single_char_keys' => %w(
+      single_char_keys: %w(
         t
         v
       )
@@ -190,7 +190,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
 
   def test_stash_in_version_0_5_2
     exp_hash = {
-      'ignored_keys' => %w(
+      ignored_keys: %w(
         config
         c
         env
@@ -211,7 +211,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         split
         split-with-dir
       ),
-      'recognized_keys' => %w(
+      recognized_keys: %w(
         table-options
         bulk-change
         default-int-limit
@@ -238,7 +238,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         version
         v
       ),
-      'non_value_keys' => %w(
+      non_value_keys: %w(
         bulk-change
         reverse
         with-apply
@@ -255,7 +255,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         version
         v
       ),
-      'single_char_keys' => %w(
+      single_char_keys: %w(
         r
         t
         v
@@ -269,7 +269,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
 
   def test_stash_in_version_0_6_0_to_0_6_2
     exp_hash = {
-      'ignored_keys' => %w(
+      ignored_keys: %w(
         config
         c
         env
@@ -290,7 +290,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         split
         split-with-dir
       ),
-      'recognized_keys' => %w(
+      recognized_keys: %w(
         table-options
         bulk-change
         default-bool-limit
@@ -317,7 +317,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         version
         v
       ),
-      'non_value_keys' => %w(
+      non_value_keys: %w(
         bulk-change
         reverse
         with-apply
@@ -329,7 +329,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         version
         v
       ),
-      'single_char_keys' => %w(
+      single_char_keys: %w(
         r
         t
         v
@@ -345,7 +345,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
 
   def test_stash_in_version_0_6_3
     exp_hash = {
-      'ignored_keys' => %w(
+      ignored_keys: %w(
         config
         c
         env
@@ -366,7 +366,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         split
         split-with-dir
       ),
-      'recognized_keys' => %w(
+      recognized_keys: %w(
         table-options
         bulk-change
         default-bool-limit
@@ -394,7 +394,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         version
         v
       ),
-      'non_value_keys' => %w(
+      non_value_keys: %w(
         bulk-change
         reverse
         with-apply
@@ -407,7 +407,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         version
         v
       ),
-      'single_char_keys' => %w(
+      single_char_keys: %w(
         r
         t
         v
@@ -421,7 +421,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
 
   def test_stash_in_version_0_6_4
     exp_hash = {
-      'ignored_keys' => %w(
+      ignored_keys: %w(
         config
         c
         env
@@ -442,7 +442,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         split
         split-with-dir
       ),
-      'recognized_keys' => %w(
+      recognized_keys: %w(
         table-options
         alter-extra
         external-script
@@ -473,7 +473,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         version
         v
       ),
-      'non_value_keys' => %w(
+      non_value_keys: %w(
         bulk-change
         reverse
         with-apply
@@ -487,7 +487,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
         version
         v
       ),
-      'single_char_keys' => %w(
+      single_char_keys: %w(
         r
         t
         v

@@ -1,0 +1,8 @@
+require 'ridgepole_rake/option_keys/v050'
+require 'ridgepole_rake/option_keys/v051'
+require 'ridgepole_rake/option_keys/v052'
+require 'ridgepole_rake/option_keys/v060'
+require 'ridgepole_rake/option_keys/v061'
+require 'ridgepole_rake/option_keys/v062'
+require 'ridgepole_rake/option_keys/v063'
+require 'ridgepole_rake/option_keys/v064'
