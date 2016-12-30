@@ -11,6 +11,7 @@ module RidgepoleRake
       '0.6.2' => OptionKeys::V062,
       '0.6.3' => OptionKeys::V063,
       '0.6.4' => OptionKeys::V064,
+      '0.6.5.beta14' => OptionKeys::V065Beta14,
     }.freeze
 
     class << self

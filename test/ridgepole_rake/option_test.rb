@@ -498,4 +498,84 @@ class RidgepoleRake::OptionTest < Minitest::Test
       assert_equal exp_hash, RidgepoleRake::Option.__send__(:stash)
     end
   end
+
+  def test_stash_in_version_0_6_5_beta14
+    exp_hash = {
+      ignored_keys: %w(
+        config
+        c
+        env
+        E
+        apply
+        a
+        merge
+        m
+        file
+        f
+        dry-run
+        export
+        e
+        diff
+        d
+        output
+        o
+        split
+        split-with-dir
+      ),
+      recognized_keys: %w(
+        table-options
+        alter-extra
+        external-script
+        bulk-change
+        default-bool-limit
+        default-int-limit
+        default-float-limit
+        default-string-limit
+        default-text-limit
+        default-binary-limit
+        pre-query
+        post-query
+        reverse
+        with-apply
+        tables
+        t
+        ignore-tables
+        enable-mysql-awesome
+        mysql-use-alter
+        dump-without-table-options
+        dump-with-default-fk-name
+        index-removed-drop-column
+        require
+        r
+        log-file
+        verbose
+        debug
+        version
+        v
+      ),
+      non_value_keys: %w(
+        bulk-change
+        reverse
+        with-apply
+        enable-mysql-awesome
+        mysql-use-alter
+        dump-without-table-options
+        dump-with-default-fk-name
+        index-removed-drop-column
+        verbose
+        debug
+        version
+        v
+      ),
+      single_char_keys: %w(
+        r
+        t
+        v
+      )
+    }
+
+    RidgepoleRake::Option.stub(:ridgepole_version, '0.6.5.beta14') do
+      assert_equal exp_hash, RidgepoleRake::Option.__send__(:stash)
+    end
+  end
 end
