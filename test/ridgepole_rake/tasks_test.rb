@@ -58,7 +58,7 @@ class RidgepoleTasksTest < Minitest::Test
 
     assert @run_mock.verify
     assert_equal :export, @args[0]
-    assert_equal nil, @args[1]
+    assert_nil @args[1]
   end
 
   def test_diff
@@ -68,7 +68,7 @@ class RidgepoleTasksTest < Minitest::Test
 
     assert @run_mock.verify
     assert_equal :diff, @args[0]
-    assert_equal nil, @args[1]
+    assert_nil @args[1]
   end
 
   def test_run
