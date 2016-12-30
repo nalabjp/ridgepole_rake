@@ -1,28 +1,7 @@
 module RidgepoleRake
   module OptionKeys
     module V051
-      # @note Same as V050
-      IGNORED_KEYS = %w(
-        config
-        c
-        env
-        E
-        apply
-        a
-        merge
-        m
-        file
-        f
-        dry-run
-        export
-        e
-        diff
-        d
-        output
-        o
-        split
-        split-with-dir
-      ).freeze
+      IGNORED_KEYS = V050::IGNORED_KEYS
 
       RECOGNIZED_KEYS = %w(
         table-options
@@ -62,11 +41,7 @@ module RidgepoleRake
         v
       ).freeze
 
-      # @note Same as V050
-      SINGLE_CHAR_KEYS = %w(
-        t
-        v
-      ).freeze
+      SINGLE_CHAR_KEYS = V050::SINGLE_CHAR_KEYS
     end
   end
 end
