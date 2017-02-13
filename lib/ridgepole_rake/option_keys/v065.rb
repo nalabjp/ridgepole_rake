@@ -1,6 +1,6 @@
 module RidgepoleRake
   module OptionKeys
-    module V065Beta14
+    module V065
       IGNORED_KEYS = V050::IGNORED_KEYS
 
       RECOGNIZED_KEYS = V064::RECOGNIZED_KEYS

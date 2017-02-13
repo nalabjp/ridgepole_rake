@@ -499,7 +499,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
     end
   end
 
-  def test_stash_in_version_0_6_5_beta14
+  def test_stash_in_version_0_6_5
     exp_hash = {
       ignored_keys: %w(
         config
@@ -574,7 +574,7 @@ class RidgepoleRake::OptionTest < Minitest::Test
       )
     }
 
-    RidgepoleRake::Option.stub(:ridgepole_version, '0.6.5.beta14') do
+    RidgepoleRake::Option.stub(:ridgepole_version, '0.6.5') do
       assert_equal exp_hash, RidgepoleRake::Option.__send__(:stash)
     end
   end
