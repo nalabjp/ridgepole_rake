@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in ridgepole_rake.gemspec
 gemspec
 
-gem 'ridgepole', github: 'winebarrel/ridgepole', branch: 'v0.6.5'
+gem 'ridgepole'
 
 group :development, :test do
   gem 'pry'
