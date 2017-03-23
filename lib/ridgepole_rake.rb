@@ -9,19 +9,27 @@ require 'ridgepole_rake/command'
 require 'ridgepole_rake/tasks'
 require 'ridgepole_rake/version'
 
-%w(
-  rails
-  bundler
-  brancher
-).each do |extension|
-  begin
-    require extension
-    require "ridgepole_rake/ext/#{extension}"
-  rescue LoadError
-  end
+# Rails
+begin
+  require 'rails'
+  require 'ridgepole_rake/ext/rails'
+  require 'ridgepole_rake/railtie'
+rescue LoadError
 end
 
-require 'ridgepole_rake/railtie' if defined?(Rails)
+#Bundler
+begin
+  require 'bundler'
+  require 'ridgepole_rake/ext/bundler'
+rescue LoadError
+end
+
+# Brancher
+begin
+  require 'brancher'
+  require 'ridgepole_rake/ext/brancher'
+rescue LoadError
+end
 
 module RidgepoleRake
   extend self
