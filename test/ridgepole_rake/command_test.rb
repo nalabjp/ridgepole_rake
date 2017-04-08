@@ -153,7 +153,7 @@ class RidgepoleRake::CommandTest < Minitest::Test
       'debug'                      => true,
       'version'                    => true,
       'v'                          => true
-    }) # Ridgepole v0.6.4 only
+    }) # Ridgepole latest only
     exp = 'bundle exec ridgepole --apply --file db/schemas/Schemafile --env test --config config/database.yml --table-options ENGINE=INNODB --alter-extra LOCK=NONE --external-script ./test.sh --bulk-change --default-bool-limit 1 --default-int-limit 2 --default-float-limit 3 --default-string-limit 4 --default-text-limit 5 --default-binary-limit 6 --pre-query "any query1" --post-query "any query2" --reverse --with-apply --tables table1 -t table1 --ignore-tables table2 --enable-mysql-awesome --mysql-use-alter --dump-without-table-options --dump-with-default-fk-name --index-removed-drop-column --require requires.rb -r requires.rb --log-file log-file.log --verbose --debug --version -v'
 
     assert_equal exp, RidgepoleRake::Command.new(action, config).inspect
