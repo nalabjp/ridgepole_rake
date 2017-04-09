@@ -162,6 +162,13 @@ RidgepoleRake.config.bundler
 
 If `RidgepoleRake.config.bundler[:use] == true` and `RidgepoleRake.config.bundler[:clean_system] == true`, Ridgepole will be performed using `Bundler.clean_system`.
 
+```ruby
+RidgepoleRake.config.bundler[:with_clean_env] = proc { ENV.update('FOO' => 'bar') }
+# => {"use"=>true, "clean_system"=>true, "with_clean_env"=>#<Proc:0x007f8711095818>}
+```
+
+If an object with a method named `call` is set in `RidgepoleRake.config.bundler[:with_clean_env]`, Ridgepole will be performed after calling the method named `call` of that object in `Bundler.with_clean_env` block.
+
 ## License
 
 MIT License
