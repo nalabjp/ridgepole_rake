@@ -3,19 +3,19 @@ sudo: required
 language: ruby
 matrix:
   include:
-    - rvm: 2.3.3
+    - rvm: 2.3.4
       gemfile: gemfiles/Gemfile-minimum
-    - rvm: 2.3.3
+    - rvm: 2.3.4
       gemfile: gemfiles/Gemfile-rails4-2
-    - rvm: 2.3.3
+    - rvm: 2.3.4
       gemfile: gemfiles/Gemfile-rails5-0
-    - rvm: 2.3.3
+    - rvm: 2.3.4
       gemfile: gemfiles/Gemfile-all-rails4-2
-    - rvm: 2.3.3
+    - rvm: 2.3.4
       gemfile: gemfiles/Gemfile-all-rails5-0
-    - rvm: 2.4.0
+    - rvm: 2.4.1
       gemfile: gemfiles/Gemfile-rails5-0
-    - rvm: 2.4.0
+    - rvm: 2.4.1
       gemfile: gemfiles/Gemfile-all-rails5-0
 cache:
   - bundler
