@@ -27,7 +27,7 @@ module RidgepoleRake
       end
 
       def database_configuration
-        if config.brancher[:use] && (yaml = database_configuration_with_brancher rescue nil)
+        if config.brancher[:use] && (yaml = database_configuration_with_brancher)
           action.eql?(:diff) ? remove_first_line_in_yaml(yaml) : yaml
         else
           config.ridgepole.fetch(:config)
@@ -41,6 +41,8 @@ module RidgepoleRake
         ::Brancher::DatabaseRenameService.rename!(configurations, env)
 
         configurations[env].to_yaml
+      rescue
+        nil
       end
 
       def load_configurations
