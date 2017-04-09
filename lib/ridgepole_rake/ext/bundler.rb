@@ -8,7 +8,7 @@ module RidgepoleRake
       # @note override
       def initialize
         super
-        @bundler = { use: true, clean_system: true }.with_indifferent_access
+        @bundler = { use: true, clean_system: true, with_clean_env: nil }.with_indifferent_access
       end
 
       def bundler=(hash)
@@ -19,7 +19,12 @@ module RidgepoleRake
     module Command
       # @note override
       def execute
-        if config.bundler[:use] && config.bundler[:clean_system]
+        if use_with_clean_env?
+          ::Bundler.with_clean_env do
+            config.bundler[:with_clean_env].call
+            super
+          end
+        elsif use_clean_system?
           ::Bundler.clean_system(*stash)
         else
           super
@@ -32,6 +37,14 @@ module RidgepoleRake
       def add_ridgepole
         super
         stash.unshift(*%w(bundle exec)) if config.bundler[:use]
+      end
+
+      def use_with_clean_env?
+        config.bundler[:use] && config.bundler[:with_clean_env].respond_to?(:call)
+      end
+
+      def use_clean_system?
+        config.bundler[:use] && config.bundler[:clean_system]
       end
     end
   end

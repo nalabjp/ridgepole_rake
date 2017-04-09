@@ -24,5 +24,17 @@ if defined?(::Bundler)
 
       assert mock.verify
     end
+
+    def test_execute_with_bundler_with_clean_env
+      ENV.delete('FOO')
+      RidgepoleRake.config.bundler[:with_clean_env] = -> { ENV.update('FOO' => 'bar') }
+      mock = Minitest::Mock.new
+      Bundler.stub(:with_clean_env, mock) do
+        RidgepoleRake::Command.new(:apply, RidgepoleRake.config).execute
+      end
+
+      assert mock.verify
+      assert_equal 'bar', ENV['FOO']
+    end
   end
 end
